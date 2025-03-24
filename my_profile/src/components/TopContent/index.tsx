@@ -15,7 +15,7 @@ import {
   mail_IconStyle,
 } from "./style.css";
 import { BasicLayout } from "../BasicLayout";
-import { TopIconProps, IconLink } from "./IconLink";
+import { IconLink } from "./IconLink";
 import { client } from "../../../libs/microcms";
 
 type TopContentProps = {
@@ -32,7 +32,7 @@ async function getTpoContent(): Promise<TopContentProps> {
   return data;
 }
 // microCMSからアイコンデータを取得
-async function getIconItems(): Promise<TopIconProps[]> {
+async function getIconItems(): Promise<React.ComponentProps<typeof IconLink>[]> {
   const data = await client.get({
     endpoint: "top-icon-items",
   });
@@ -41,7 +41,7 @@ async function getIconItems(): Promise<TopIconProps[]> {
 
 export const TopContent: React.FC = () => {
   const [topData, setTopData] = useState<TopContentProps | null>(null);
-  const [iconItems, setIconItems] = useState<TopIconProps[]>([]);
+  const [iconItems, setIconItems] = useState<React.ComponentProps<typeof IconLink>[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

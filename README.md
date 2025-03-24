@@ -18,8 +18,11 @@
 ### フレームワーク
 - React.js (Next.js)
 
+### CMS
+- microCMS
+
 ### ライブラリ
--  [vanilla-extract](https://vanilla-extract.style/)
+- [vanilla-extract](https://vanilla-extract.style/)
 - [preline](https://preline.co/index.html)
 - [swiper](https://swiperjs.com/)
 - [nodemailer](https://www.nodemailer.com/)
