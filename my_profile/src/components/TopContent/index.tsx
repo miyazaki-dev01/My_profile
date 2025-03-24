@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   TopContentStyle,
@@ -12,28 +15,51 @@ import {
   mail_IconStyle,
 } from "./style.css";
 import { BasicLayout } from "../BasicLayout";
-import { IconLink } from "./IconLink";
+import { TopIconProps, IconLink } from "./IconLink";
+import { client } from "../../../libs/microcms";
 
-const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
-  {
-    href: "https://x.com/miyazaki_dev01",
-    alt: "X",
-    src: "/icon/topcontent/x.svg",
-  },
-  {
-    href: "https://github.com/miyazaki-dev01",
-    alt: "GitHub",
-    src: "/icon/topcontent/github.svg",
-  },
-  {
-    href: "https://atcoder.jp/users/MiyazakiTakahiro",
-    alt: "AtCoder",
-    src: "/icon/topcontent/at-coder.svg",
-    size: "medium",
-  },
-] as const;
+type TopContentProps = {
+  job_category: string;
+  name: string;
+  description: string;
+};
+
+// microCMSからトップコンテンツのデータを取得
+async function getTpoContent(): Promise<TopContentProps> {
+  const data = await client.get({
+    endpoint: "top-content",
+  });
+  return data;
+}
+// microCMSからアイコンデータを取得
+async function getIconItems(): Promise<TopIconProps[]> {
+  const data = await client.get({
+    endpoint: "top-icon-items",
+  });
+  return data.contents;
+}
 
 export const TopContent: React.FC = () => {
+  const [topData, setTopData] = useState<TopContentProps | null>(null);
+  const [iconItems, setIconItems] = useState<TopIconProps[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [topContent, icons] = await Promise.all([
+          getTpoContent(),
+          getIconItems(),
+        ]);
+        setTopData(topContent);
+        setIconItems(icons);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <BasicLayout themeColor="white">
@@ -53,27 +79,21 @@ export const TopContent: React.FC = () => {
           {/* ディスクリプション */}
           <div className={descriptionStyle}>
             <div>
-              <p className={occupationStyle}>Software Developer</p>
-              <h2 className={nameStyle}>Takahiro Miyazaki</h2>
-              <div className={explanatoryStyle}>
-                <p>
-                  初めまして！宮﨑貴大と申します。
-                  <br />
-                  普段は人材系事業会社のWebエンジニアとして、サイトの保守・運用などを担当しています。
-                  <br />
-                  ここでは私の実績・技術・経歴などについて紹介しています。
-                </p>
-                <p>
-                  技術の習得にも積極的に取り組み、迅速かつ柔軟な対応を心がけています。
-                  <br />
-                  お仕事のご相談がありましたら、ぜひお気軽にご連絡ください。
-                </p>
-              </div>
+              {topData && (
+                <>
+                  <p className={occupationStyle}>{topData.job_category}</p>
+                  <h2 className={nameStyle}>{topData.name}</h2>
+                  <div
+                    className={explanatoryStyle}
+                    dangerouslySetInnerHTML={{ __html: topData.description }}
+                  />
+                </>
+              )}
             </div>
 
             {/* リンク */}
             <div className={linkStyle}>
-              {ICON_ITEMS.map((item, index) => (
+              {iconItems.map((item, index) => (
                 <IconLink key={index} {...item} />
               ))}
               <a href="#Contact" className={mailStyle}>

@@ -2,14 +2,14 @@ import React from "react";
 import { imageStyle, ImageSize } from "./style.css";
 import Link, {LinkProps} from "next/link";
 
-type Props = {
+export type TopIconProps = {
   href: LinkProps["href"];
   alt: string;
   src: string;
   size?: ImageSize;
 }
 
-export const IconLink: React.FC<Props> = ({
+export const IconLink: React.FC<TopIconProps> = ({
   size = "small",
   href,
   alt,
