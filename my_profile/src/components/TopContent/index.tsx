@@ -19,10 +19,34 @@ import { IconLink } from "./IconLink";
 import { client } from "../../../libs/microcms";
 
 type TopContentProps = {
+  image: {
+    url: string;
+    height: number;
+    width: number;
+  };
   job_category: string;
   name: string;
   description: string;
 };
+
+const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
+  {
+    href: "https://x.com/miyazaki_dev01",
+    alt: "X",
+    src: "/icon/topcontent/x.svg",
+  },
+  {
+    href: "https://github.com/miyazaki-dev01",
+    alt: "GitHub",
+    src: "/icon/topcontent/github.svg",
+  },
+  {
+    href: "https://atcoder.jp/users/MiyazakiTakahiro",
+    alt: "AtCoder",
+    src: "/icon/topcontent/at-coder.svg",
+    size: "medium",
+  },
+] as const;
 
 // microCMSからトップコンテンツのデータを取得
 async function getTpoContent(): Promise<TopContentProps> {
@@ -31,27 +55,15 @@ async function getTpoContent(): Promise<TopContentProps> {
   });
   return data;
 }
-// microCMSからアイコンデータを取得
-async function getIconItems(): Promise<React.ComponentProps<typeof IconLink>[]> {
-  const data = await client.get({
-    endpoint: "top-icon-items",
-  });
-  return data.contents;
-}
 
 export const TopContent: React.FC = () => {
   const [topData, setTopData] = useState<TopContentProps | null>(null);
-  const [iconItems, setIconItems] = useState<React.ComponentProps<typeof IconLink>[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [topContent, icons] = await Promise.all([
-          getTpoContent(),
-          getIconItems(),
-        ]);
+        const [topContent] = await Promise.all([getTpoContent()]);
         setTopData(topContent);
-        setIconItems(icons);
       } catch (error) {
         console.error(error);
       }
@@ -67,10 +79,10 @@ export const TopContent: React.FC = () => {
           {/* プロフィール画像 */}
           <div>
             <Image
-              src="/profile/profile_image.jpeg"
+              src={topData?.image.url ?? "/theme/comming_soon.png"}
               alt="Features Image"
-              width={3012}
-              height={1928}
+              width={topData?.image.width ?? 800}
+              height={topData?.image.height ?? 500}
               unoptimized
               className={imageStyle}
             />
@@ -81,11 +93,11 @@ export const TopContent: React.FC = () => {
             <div>
               {topData && (
                 <>
-                  <p className={occupationStyle}>{topData.job_category}</p>
-                  <h2 className={nameStyle}>{topData.name}</h2>
+                  <p className={occupationStyle}>{topData?.job_category}</p>
+                  <h2 className={nameStyle}>{topData?.name}</h2>
                   <div
                     className={explanatoryStyle}
-                    dangerouslySetInnerHTML={{ __html: topData.description }}
+                    dangerouslySetInnerHTML={{ __html: topData?.description }}
                   />
                 </>
               )}
@@ -93,7 +105,7 @@ export const TopContent: React.FC = () => {
 
             {/* リンク */}
             <div className={linkStyle}>
-              {iconItems.map((item, index) => (
+              {ICON_ITEMS.map((item, index) => (
                 <IconLink key={index} {...item} />
               ))}
               <a href="#Contact" className={mailStyle}>
