@@ -1,5 +1,6 @@
 // libs/microcms.ts
 import { createClient } from 'microcms-js-sdk';
+import { TopContentProps } from '../types/topContent';
 
 // 環境変数にMICROCMS_SERVICE_DOMAINが設定されていない場合はエラーを投げる
 if (!process.env.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN) {

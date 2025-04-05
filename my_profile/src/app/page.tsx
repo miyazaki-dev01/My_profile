@@ -1,10 +1,8 @@
-import { Navbar } from "../components/Navbar/index";
 import { TopContent } from "../components/TopContent";
 import { Portfolio } from "../components/Portfolio";
 import { SkillsAndQualification } from "../components/SkillsAndQualification";
 import { Career } from "../components/Career";
 import { Working } from "../components/Working";
-import { Footer } from "../components/Footer";
 import { getTopContent } from "../libs/microcms";
 
 export const dynamic = "force-static"; // 静的生成明示
@@ -13,16 +11,12 @@ export default async function Home() {
   const topData = await getTopContent();
 
   return (
-    <>
-      <Navbar />
-      <main className="mt-[50px]">
-        <TopContent topData={topData} />
-        <Portfolio />
-        <SkillsAndQualification />
-        <Career />
-        <Working />
-        <Footer />
-      </main>
-    </>
+    <main className="mt-[50px]">
+      <TopContent topData={topData} />
+      <Portfolio />
+      <SkillsAndQualification />
+      <Career />
+      <Working />
+    </main>
   );
 }

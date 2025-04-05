@@ -1,4 +1,4 @@
-type TopContentProps = {
+export type TopContentProps = {
   image: {
     url: string;
     height: number;
