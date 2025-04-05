@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   TopContentStyle,
@@ -16,18 +13,6 @@ import {
 } from "./style.css";
 import { BasicLayout } from "../BasicLayout";
 import { IconLink } from "./IconLink";
-import { client } from "../../../libs/microcms";
-
-type TopContentProps = {
-  image: {
-    url: string;
-    height: number;
-    width: number;
-  };
-  job_category: string;
-  name: string;
-  description: string;
-};
 
 const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
   {
@@ -48,30 +33,7 @@ const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
   },
 ] as const;
 
-// microCMSからトップコンテンツのデータを取得
-async function getTpoContent(): Promise<TopContentProps> {
-  const data = await client.get({
-    endpoint: "top-content",
-  });
-  return data;
-}
-
-export const TopContent: React.FC = () => {
-  const [topData, setTopData] = useState<TopContentProps | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [topContent] = await Promise.all([getTpoContent()]);
-        setTopData(topContent);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+export const TopContent = ({ topData }: { topData: TopContentProps }) => {
   return (
     <>
       <BasicLayout themeColor="white">
