@@ -32,25 +32,25 @@ const ITEMS: React.ComponentProps<typeof PortfolioCard>[] = [
     url: "#",
     date: "2025.1.1",
     text: "comming soon...comming soon...comming soon...",
-    img: "/portfolio/comming_soon.png",
+    img: "/theme/comming_soon.png",
   },
   {
     url: "#",
     date: "2025.1.1",
     text: "comming soon...comming soon...comming soon...",
-    img: "/portfolio/comming_soon.png",
+    img: "/theme/comming_soon.png",
   },
   {
     url: "#",
     date: "2025.1.1",
     text: "comming soon...comming soon...comming soon...",
-    img: "/portfolio/comming_soon.png",
+    img: "/theme/comming_soon.png",
   },
   {
     url: "#",
     date: "2025.1.1",
     text: "comming soon...comming soon...comming soon...",
-    img: "/portfolio/comming_soon.png",
+    img: "/theme/comming_soon.png",
   },
 ] as const;
 

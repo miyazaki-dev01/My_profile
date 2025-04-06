@@ -13,6 +13,7 @@ import {
 } from "./style.css";
 import { BasicLayout } from "../BasicLayout";
 import { IconLink } from "./IconLink";
+import { TopContentProps } from "../../types/topContent";
 
 const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
   {
@@ -33,60 +34,52 @@ const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
   },
 ] as const;
 
-export const TopContent: React.FC = () => {
+export const TopContent = ({ topData }: { topData: TopContentProps }) => {
   return (
-    <>
-      <BasicLayout themeColor="white">
-        <div className={TopContentStyle}>
-          {/* プロフィール画像 */}
+    <BasicLayout themeColor="white">
+      <div className={TopContentStyle}>
+        {/* プロフィール画像 */}
+        <div>
+          <Image
+            src={topData?.image.url ?? "/theme/comming_soon.png"}
+            alt="Features Image"
+            width={topData?.image.width ?? 800}
+            height={topData?.image.height ?? 500}
+            unoptimized
+            className={imageStyle}
+          />
+        </div>
+
+        {/* ディスクリプション */}
+        <div className={descriptionStyle}>
           <div>
-            <Image
-              src="/profile/profile_image.jpeg"
-              alt="Features Image"
-              width={3012}
-              height={1928}
-              unoptimized
-              className={imageStyle}
-            />
+            {topData && (
+              <>
+                <p className={occupationStyle}>{topData?.job_category}</p>
+                <h2 className={nameStyle}>{topData?.name}</h2>
+                <div
+                  className={explanatoryStyle}
+                  dangerouslySetInnerHTML={{ __html: topData?.description }}
+                />
+              </>
+            )}
           </div>
 
-          {/* ディスクリプション */}
-          <div className={descriptionStyle}>
-            <div>
-              <p className={occupationStyle}>Software Developer</p>
-              <h2 className={nameStyle}>Takahiro Miyazaki</h2>
-              <div className={explanatoryStyle}>
-                <p>
-                  初めまして！宮﨑貴大と申します。
-                  <br />
-                  普段は人材系事業会社のWebエンジニアとして、サイトの保守・運用などを担当しています。
-                  <br />
-                  ここでは私の実績・技術・経歴などについて紹介しています。
-                </p>
-                <p>
-                  技術の習得にも積極的に取り組み、迅速かつ柔軟な対応を心がけています。
-                  <br />
-                  お仕事のご相談がありましたら、ぜひお気軽にご連絡ください。
-                </p>
-              </div>
-            </div>
-
-            {/* リンク */}
-            <div className={linkStyle}>
-              {ICON_ITEMS.map((item, index) => (
-                <IconLink key={index} {...item} />
-              ))}
-              <a href="#Contact" className={mailStyle}>
-                <img
-                  src="/icon/topcontent/mail.svg"
-                  alt="mail"
-                  className={mail_IconStyle}
-                />
-              </a>
-            </div>
+          {/* リンク */}
+          <div className={linkStyle}>
+            {ICON_ITEMS.map((item, index) => (
+              <IconLink key={index} {...item} />
+            ))}
+            <a href="#Contact" className={mailStyle}>
+              <img
+                src="/icon/topcontent/mail.svg"
+                alt="mail"
+                className={mail_IconStyle}
+              />
+            </a>
           </div>
         </div>
-      </BasicLayout>
-    </>
+      </div>
+    </BasicLayout>
   );
 };
