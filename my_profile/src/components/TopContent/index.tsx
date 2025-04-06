@@ -13,7 +13,7 @@ import {
 } from "./style.css";
 import { BasicLayout } from "../BasicLayout";
 import { IconLink } from "./IconLink";
-import { TopContentProps } from '../../types/topContent';
+import { TopContentProps } from "../../types/topContent";
 
 const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
   {
@@ -36,52 +36,50 @@ const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
 
 export const TopContent = ({ topData }: { topData: TopContentProps }) => {
   return (
-    <>
-      <BasicLayout themeColor="white">
-        <div className={TopContentStyle}>
-          {/* プロフィール画像 */}
+    <BasicLayout themeColor="white">
+      <div className={TopContentStyle}>
+        {/* プロフィール画像 */}
+        <div>
+          <Image
+            src={topData?.image.url ?? "/theme/comming_soon.png"}
+            alt="Features Image"
+            width={topData?.image.width ?? 800}
+            height={topData?.image.height ?? 500}
+            unoptimized
+            className={imageStyle}
+          />
+        </div>
+
+        {/* ディスクリプション */}
+        <div className={descriptionStyle}>
           <div>
-            <Image
-              src={topData?.image.url ?? "/theme/comming_soon.png"}
-              alt="Features Image"
-              width={topData?.image.width ?? 800}
-              height={topData?.image.height ?? 500}
-              unoptimized
-              className={imageStyle}
-            />
+            {topData && (
+              <>
+                <p className={occupationStyle}>{topData?.job_category}</p>
+                <h2 className={nameStyle}>{topData?.name}</h2>
+                <div
+                  className={explanatoryStyle}
+                  dangerouslySetInnerHTML={{ __html: topData?.description }}
+                />
+              </>
+            )}
           </div>
 
-          {/* ディスクリプション */}
-          <div className={descriptionStyle}>
-            <div>
-              {topData && (
-                <>
-                  <p className={occupationStyle}>{topData?.job_category}</p>
-                  <h2 className={nameStyle}>{topData?.name}</h2>
-                  <div
-                    className={explanatoryStyle}
-                    dangerouslySetInnerHTML={{ __html: topData?.description }}
-                  />
-                </>
-              )}
-            </div>
-
-            {/* リンク */}
-            <div className={linkStyle}>
-              {ICON_ITEMS.map((item, index) => (
-                <IconLink key={index} {...item} />
-              ))}
-              <a href="#Contact" className={mailStyle}>
-                <img
-                  src="/icon/topcontent/mail.svg"
-                  alt="mail"
-                  className={mail_IconStyle}
-                />
-              </a>
-            </div>
+          {/* リンク */}
+          <div className={linkStyle}>
+            {ICON_ITEMS.map((item, index) => (
+              <IconLink key={index} {...item} />
+            ))}
+            <a href="#Contact" className={mailStyle}>
+              <img
+                src="/icon/topcontent/mail.svg"
+                alt="mail"
+                className={mail_IconStyle}
+              />
+            </a>
           </div>
         </div>
-      </BasicLayout>
-    </>
+      </div>
+    </BasicLayout>
   );
 };
