@@ -8,13 +8,7 @@ import {
   titleStyle,
   descriptionStyle,
 } from "./style.css";
-
-type BlogCardProps = {
-  url: string;
-  img: string;
-  date: string;
-  text: string;
-};
+import { BlogCardProps } from "@/types/BlogContent";
 
 export const BlogCard: React.FC<BlogCardProps> = ({ url, img, date, text }) => {
   return (
