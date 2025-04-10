@@ -24,8 +24,8 @@ const NAVBAR_ITEMS: Omit<
     name: "Home",
   },
   {
-    href: "#Portfolio",
-    name: "Portfolio",
+    href: "#PortfolioAndBlog",
+    name: "Portfolio & Blog",
   },
   {
     href: "#Skills&Qualification",

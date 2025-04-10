@@ -9,14 +9,14 @@ import {
   descriptionStyle,
 } from "./style.css";
 
-type Props = {
+type BlogCardProps = {
   url: string;
   img: string;
   date: string;
   text: string;
 };
 
-export const PortfolioCard: React.FC<Props> = ({ url, img, date, text }) => {
+export const BlogCard: React.FC<BlogCardProps> = ({ url, img, date, text }) => {
   return (
     <div className={cardStyle}>
       <a href={url} className={imageAStyle}>
