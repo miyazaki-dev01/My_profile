@@ -1,6 +1,6 @@
 import { TopContent } from "../components/TopContent";
-import { PortfolioAndBlog } from "../components/Portfolio";
-import { SkillsAndQualification } from "../components/SkillsAndQualification";
+import { PortfolioAndBlog } from "../components/PortfolioAndBlog";
+import { SkillsAndQualification } from "../components/Skills";
 import { Career } from "../components/Career";
 import { Working } from "../components/Working";
 import { getTopContent } from "../libs/microcms";
