@@ -28,8 +28,8 @@ const NAVBAR_ITEMS: Omit<
     name: "Portfolio & Blog",
   },
   {
-    href: "#Skills&Qualification",
-    name: "Skills & Qualification",
+    href: "#Skills",
+    name: "Skills",
   },
   {
     href: "#Career",
