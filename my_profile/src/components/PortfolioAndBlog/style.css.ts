@@ -1,5 +1,4 @@
 import breakpoints from "@/theme/breakpoints";
-import space from "@/theme/space";
 import { style } from "@vanilla-extract/css";
 
 export const PortfolioAndBlogStyle = style({
