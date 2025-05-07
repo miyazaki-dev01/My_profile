@@ -81,6 +81,7 @@ export const viewAllStyle = style({
   ":hover": {
     backgroundColor: colors.darkWhite,
     color: colors.brack,
+    cursor: "pointer",
   },
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {

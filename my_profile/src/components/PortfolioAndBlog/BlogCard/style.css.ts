@@ -60,7 +60,7 @@ export const descriptionStyle = style({
 
 export const categoryAndDateStyle = style({
   display: "flex",
-  margin: `${space.xs}px 0 ${space.xxs}px 0`,
+  padding: `${space.xs}px 0 ${space.xxs}px 0`,
   alignItems: "center",
 });
 
