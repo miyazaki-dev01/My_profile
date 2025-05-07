@@ -4,6 +4,7 @@ import colors from "@/theme/colors";
 import fontSizes from "@/theme/fontSize";
 import space from "@/theme/space";
 import breakpoints from "@/theme/breakpoints";
+import fontWeight from "@/theme/fontWeight";
 
 globalStyle(".swiper-pagination-bullet", {
   backgroundColor: colors.lightGray,
@@ -57,10 +58,30 @@ export const descriptionStyle = style({
   display: "block",
 });
 
+export const categoryAndDateStyle = style({
+  display: "flex",
+  padding: `${space.xs}px 0 ${space.xxs}px 0`,
+  alignItems: "center",
+});
+
+export const categoryStyle = style({
+  backgroundColor: colors.darkWhite,
+  color: colors.brack,
+  borderRadius: "100vh",
+  fontSize: fontSizes.xs,
+  padding: `4px 8px`,
+  "@media": {
+    [`screen and (max-width: ${breakpoints.mobile}px)`]: {
+      fontSize: fontSizes.xxs,
+      padding: `3px 6px`,
+    },
+  },
+});
+
 export const dateStyle = style({
   color: colors.lightGray,
   fontSize: fontSizes.xs,
-  paddingTop: space.s,
+  margin: "0 2% 0 auto",
 });
 
 export const titleStyle = style({
@@ -68,9 +89,11 @@ export const titleStyle = style({
   whiteSpace: "nowrap",
   overflow: "hidden",
   textOverflow: "ellipsis",
+  fontWeight: fontWeight.bold,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
-      fontSize: fontSizes.s,
+      fontSize: fontSizes.m,
+      fontWeight: fontWeight.normal,
     },
   },
 });

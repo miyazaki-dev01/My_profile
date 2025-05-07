@@ -7,16 +7,18 @@ import {
   dateStyle,
   titleStyle,
   descriptionStyle,
+  categoryAndDateStyle,
+  categoryStyle,
 } from "./style.css";
+import { BlogCardProps } from "@/types/BlogContent";
 
-type Props = {
-  url: string;
-  img: string;
-  date: string;
-  text: string;
-};
-
-export const PortfolioCard: React.FC<Props> = ({ url, img, date, text }) => {
+export const BlogCard: React.FC<BlogCardProps> = ({
+  url,
+  img,
+  date,
+  text,
+  category,
+}) => {
   return (
     <div className={cardStyle}>
       <a href={url} className={imageAStyle}>
@@ -30,7 +32,10 @@ export const PortfolioCard: React.FC<Props> = ({ url, img, date, text }) => {
         />
       </a>
       <a href={url} className={descriptionStyle}>
-        <p className={dateStyle}>{date}</p>
+        <div className={categoryAndDateStyle}>
+          {category && <p className={categoryStyle}>{category}</p>}
+          <p className={dateStyle}>{date}</p>
+        </div>
         <p className={titleStyle}>{text}</p>
       </a>
     </div>

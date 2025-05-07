@@ -24,12 +24,12 @@ const NAVBAR_ITEMS: Omit<
     name: "Home",
   },
   {
-    href: "#Portfolio",
-    name: "Portfolio",
+    href: "#PortfolioAndBlog",
+    name: "Portfolio & Blog",
   },
   {
-    href: "#Skills&Qualification",
-    name: "Skills & Qualification",
+    href: "#Skills",
+    name: "Skills",
   },
   {
     href: "#Career",
