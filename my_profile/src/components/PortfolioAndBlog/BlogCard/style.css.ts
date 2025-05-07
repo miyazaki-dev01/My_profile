@@ -68,12 +68,12 @@ export const categoryStyle = style({
   backgroundColor: colors.darkWhite,
   color: colors.brack,
   borderRadius: "100vh",
-  fontSize: fontSizes.s,
-  padding: `3px 6px`,
+  fontSize: fontSizes.xs,
+  padding: `4px 8px`,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
-      fontSize: fontSizes.xs,
-      padding: `2.5px 6px`,
+      fontSize: fontSizes.xxs,
+      padding: `3px 6px`,
     },
   },
 });
