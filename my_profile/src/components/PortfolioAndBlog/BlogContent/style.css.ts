@@ -5,8 +5,8 @@ import fontWeight from "@/theme/fontWeight";
 import space from "@/theme/space";
 import colors from "@/theme/colors";
 
-export const portfolioStyle = style({
-  width: "95%",
+export const blogStyle = style({
+  width: "100%",
   margin: "0 auto",
 });
 
@@ -14,10 +14,10 @@ export const titleStyle = style({
   textAlign: "center",
   fontSize: fontSizes.xl,
   fontWeight: fontWeight.bold,
-  marginBottom: space.xl,
+  marginBottom: space.xml,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
-      fontSize: fontSizes.l,
+      fontSize: fontSizes.xxl,
       marginBottom: space.l,
     },
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
@@ -74,21 +74,22 @@ export const viewAllStyle = style({
   fontSize: fontSizes.xs,
   paddingTop: space.xxs,
   paddingBottom: space.xxs,
-  marginTop: space.xxl,
+  marginTop: space.xl,
   marginRight: "30%",
   marginLeft: "30%",
   transition: "background-color 0.5s ease, color 0.5s ease",
   ":hover": {
     backgroundColor: colors.darkWhite,
     color: colors.brack,
+    cursor: "pointer",
   },
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
       width: "200px",
-      margin: `${space.m}px auto 0 auto`,
+      margin: `0 auto 0 auto`,
       border: "0.5px solid",
       fontSize: fontSizes.xxs,
-      marginTop: space.xml,
+      marginTop: space.m,
     },
   },
 });

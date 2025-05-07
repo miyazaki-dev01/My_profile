@@ -177,9 +177,9 @@ const QUALIFICATION_CONTENT_TEXT: React.ComponentProps<
 
 export const SkillsAndQualification: React.FC = () => {
   return (
-    <BasicLayout themeColor="white" id="Skills&Qualification">
+    <BasicLayout themeColor="white" id="Skills">
       <div className={SkillsAndQualificationStyle}>
-        <div className={titleStyle}>Skills & Qualification</div>
+        <div className={titleStyle}>Skills</div>
 
         <div
           className={`hs-accordion-group ${contentsStyle}`}
