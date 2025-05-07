@@ -3,4 +3,5 @@ export type BlogCardProps = {
   img: string;
   date: string;
   text: string;
+  category?: string;
 };

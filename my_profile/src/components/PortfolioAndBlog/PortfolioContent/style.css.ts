@@ -5,11 +5,6 @@ import fontWeight from "@/theme/fontWeight";
 import space from "@/theme/space";
 import colors from "@/theme/colors";
 
-export const blogStyle = style({
-  width: "100%",
-  margin: "0 auto",
-});
-
 export const titleStyle = style({
   textAlign: "center",
   fontSize: fontSizes.xl,
@@ -27,41 +22,18 @@ export const titleStyle = style({
   },
 });
 
-export const swiperStyle = style({
-  display: "flex",
-  justifyContent: "center",
-});
-
-export const swiperContentStyle = style({
-  width: "100%",
-});
-
-export const arrowLeftStyle = style({
-  display: "flex",
-  justifyContent: "center",
-  width: "30px",
-  marginRight: "30px",
+export const portfolioStyle = style({
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
-      display: "none",
+      width: "100%",
+      flexDirection: "column",
+      gap: space.xml,
     },
   },
-});
-
-export const arrowRightStyle = style({
   display: "flex",
-  justifyContent: "center",
-  width: "30px",
-  marginLeft: "30px",
-  "@media": {
-    [`screen and (max-width: ${breakpoints.mobile}px)`]: {
-      display: "none",
-    },
-  },
-});
-
-export const arrowIconStyle = style({
-  cursor: "pointer",
+  justifyContent: "space-between",
+  width: "95%",
+  margin: "0 auto",
 });
 
 export const viewAllStyle = style({
@@ -74,7 +46,7 @@ export const viewAllStyle = style({
   fontSize: fontSizes.xs,
   paddingTop: space.xxs,
   paddingBottom: space.xxs,
-  marginTop: space.xl,
+  marginTop: space.xml,
   marginRight: "30%",
   marginLeft: "30%",
   transition: "background-color 0.5s ease, color 0.5s ease",
@@ -88,7 +60,7 @@ export const viewAllStyle = style({
       margin: `0 auto 0 auto`,
       border: "0.5px solid",
       fontSize: fontSizes.xxs,
-      marginTop: space.m,
+      marginTop: space.xml,
     },
   },
 });

@@ -19,7 +19,7 @@ export const titleStyle = style({
   marginBottom: space.xl,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
-      fontSize: fontSizes.l,
+      fontSize: fontSizes.xxl,
       marginBottom: space.l,
     },
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {

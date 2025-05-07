@@ -26,6 +26,7 @@ const BLOG_ITEMS: React.ComponentProps<typeof BlogCard>[] = [
     date: "2025.1.1",
     text: "Miyazaki's portfolioについて",
     img: "/blog/miyazaki's_profile.png",
+    category: "frontend",
   },
   {
     url: "#",
@@ -44,6 +45,7 @@ const BLOG_ITEMS: React.ComponentProps<typeof BlogCard>[] = [
     date: "2025.1.1",
     text: "comming soon...comming soon...comming soon...",
     img: "/theme/comming_soon.png",
+    category: "backend",
   },
   {
     url: "#",
