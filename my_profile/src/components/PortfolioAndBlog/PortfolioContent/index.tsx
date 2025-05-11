@@ -28,7 +28,7 @@ export const PortfolioContent: React.FC = () => {
         ))}
       </div>
       <div className={viewAllStyle}>
-        <Link href="#">View All</Link>
+        <Link href="/portfolio">View All</Link>
       </div>
     </div>
   );

@@ -123,7 +123,7 @@ export const BlogContent: React.FC = () => {
       </div>
 
       <div className={viewAllStyle}>
-        <Link href="#">View All</Link>
+        <Link href="/blog">View All</Link>
       </div>
     </div>
   );
