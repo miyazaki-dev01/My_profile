@@ -1,8 +1,14 @@
 import React from "react";
-import { titleStyle, CareerStyle, CareerItemStyle, CareerContentStyle, CareerTitleStyle } from "./style.css";
+import {
+  titleStyle,
+  CareerStyle,
+  CareerItemStyle,
+  CareerContentStyle,
+  CareerTitleStyle,
+} from "./style.css";
 import { CareerIcon } from "./Icon";
 import { CareerContent } from "./Content";
-import { BasicLayout } from "../BasicLayout";
+import { BasicLayout } from "@/components/TopPage/BasicLayout";
 
 const UNIVERSITY_CONTENT: React.ComponentProps<typeof CareerContent>[] = [
   {

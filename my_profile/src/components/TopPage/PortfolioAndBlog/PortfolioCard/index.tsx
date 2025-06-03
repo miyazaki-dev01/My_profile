@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { PortfolioCardProps } from "@/types/PortfolioContent";
+import { PortfolioCardProps } from "@/types/PortfolioCard";
 import {
   PortfolioCardStyle,
   imageAStyle,
@@ -9,27 +9,27 @@ import {
   descriptionStyle,
 } from "./style.css";
 
-export const PortfolioCard: React.FC<PortfolioCardProps> = ({
+export const PortfolioCard = ({
   title,
-  discription,
-  image,
-  url,
-}) => {
+  description,
+  thumbnail: { url, height, width },
+  articleSlug,
+}: PortfolioCardProps) => {
   return (
     <div className={PortfolioCardStyle}>
-      <a href={url} className={imageAStyle}>
+      <a href={`/portfolio/${articleSlug}`} className={imageAStyle}>
         <Image
-          src={image}
+          src={url}
           alt="Portfolio Image"
-          width={800}
-          height={500}
+          width={width}
+          height={height}
           unoptimized
           className={imageStyle}
         />
       </a>
       <a href={url}>
         <p className={titleStyle}>{title}</p>
-        <p className={descriptionStyle}>{discription}</p>
+        <p className={descriptionStyle}>{description}</p>
       </a>
     </div>
   );

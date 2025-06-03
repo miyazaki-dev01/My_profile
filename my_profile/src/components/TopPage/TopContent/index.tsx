@@ -13,7 +13,7 @@ import {
 } from "./style.css";
 import { BasicLayout } from "../BasicLayout";
 import { IconLink } from "./IconLink";
-import { TopContentProps } from "../../types/topContent";
+import { TopContentProps } from "../../../types/topContent";
 
 const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
   {

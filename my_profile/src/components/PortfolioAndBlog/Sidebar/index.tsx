@@ -13,7 +13,7 @@ export default function Sidebar() {
     <aside className="fixed left-0 top-0 h-screen w-48 bg-[#f9f5ee] border-r border-gray-300 p-4 z-50">
       <nav className="space-y-2">
         {navItems.map((item) => (
-          <Link key={item.name} href={item.href} className="">
+          <Link key={item.name} href={item.href} scroll={false} className="">
             {item.name}
           </Link>
         ))}

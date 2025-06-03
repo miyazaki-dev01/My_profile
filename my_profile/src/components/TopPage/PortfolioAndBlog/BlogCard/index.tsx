@@ -1,0 +1,48 @@
+import React from "react";
+import Image from "next/image";
+import {
+  imageAStyle,
+  imageStyle,
+  cardStyle,
+  dateStyle,
+  titleStyle,
+  descriptionStyle,
+  categoryAndDateStyle,
+  categoryStyle,
+} from "./style.css";
+import { BlogCardProps } from "@/types/BlogCard";
+import dayjs from "dayjs";
+
+export const BlogCard = ({
+  title,
+  category,
+  thumbnail,
+  articleSlug,
+  updatedAt,
+}: BlogCardProps) => {
+  const formattedDate = dayjs(updatedAt).format("YY.MM.DD");
+
+  return (
+    <div className={cardStyle}>
+      <a href={`blog/${articleSlug}`} className={imageAStyle}>
+        <Image
+          className={imageStyle}
+          src={thumbnail.url}
+          alt="Features Image"
+          width={thumbnail.width}
+          height={thumbnail.height}
+          unoptimized
+        />
+      </a>
+      <a href={`blog/${articleSlug}`} className={descriptionStyle}>
+        <div className={categoryAndDateStyle}>
+          {category && (!Array.isArray(category) || category.length > 0) && (
+            <p className={categoryStyle}>{category}</p>
+          )}
+          <p className={dateStyle}>{formattedDate}</p>
+        </div>
+        <p className={titleStyle}>{title}</p>
+      </a>
+    </div>
+  );
+};

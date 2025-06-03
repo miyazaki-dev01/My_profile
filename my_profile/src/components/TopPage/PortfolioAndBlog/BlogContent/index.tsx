@@ -19,43 +19,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import Link from "next/link";
 import { BlogCard } from "../BlogCard";
+import { BlogsProps } from "@/types/BlogCard";
 
-const BLOG_ITEMS: React.ComponentProps<typeof BlogCard>[] = [
-  {
-    url: "#",
-    date: "2025.1.1",
-    text: "Miyazaki's portfolioについて",
-    img: "/blog/miyazaki's_profile.png",
-    category: "frontend",
-  },
-  {
-    url: "#",
-    date: "2025.1.1",
-    text: "comming soon...comming soon...comming soon...",
-    img: "/theme/comming_soon.png",
-  },
-  {
-    url: "#",
-    date: "2025.1.1",
-    text: "comming soon...comming soon...comming soon...",
-    img: "/theme/comming_soon.png",
-  },
-  {
-    url: "#",
-    date: "2025.1.1",
-    text: "comming soon...comming soon...comming soon...",
-    img: "/theme/comming_soon.png",
-    category: "backend",
-  },
-  {
-    url: "#",
-    date: "2025.1.1",
-    text: "comming soon...comming soon...comming soon...",
-    img: "/theme/comming_soon.png",
-  },
-] as const;
-
-export const BlogContent: React.FC = () => {
+export const BlogContent = ({ blogs }: BlogsProps) => {
   return (
     <div className={blogStyle}>
       <div className={titleStyle}>Blog</div>
@@ -102,9 +68,9 @@ export const BlogContent: React.FC = () => {
             },
           }}
         >
-          {BLOG_ITEMS.map((item, index) => (
-            <SwiperSlide key={index.toString()}>
-              <BlogCard {...item} />
+          {blogs.map((blog) => (
+            <SwiperSlide key={blog.id}>
+              <BlogCard {...blog} />
             </SwiperSlide>
           ))}
         </Swiper>

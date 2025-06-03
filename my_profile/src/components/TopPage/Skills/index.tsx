@@ -10,7 +10,7 @@ import {
   qualificationUlStyle,
   toolContentInnerStyle,
 } from "./style.css";
-import { BasicLayout } from "../BasicLayout";
+import { BasicLayout } from "@/components/TopPage/BasicLayout";
 import { SkillContent } from "./SkillContent";
 import { Title } from "./Title";
 import { ToolContent } from "./Tool";
@@ -266,7 +266,7 @@ export const SkillsAndQualification: React.FC = () => {
             >
               <div className={toolContentInnerStyle}>
                 {TOOL_ITEMS.map((item, index) => (
-                  <ToolContent key={index}  {...item} />
+                  <ToolContent key={index} {...item} />
                 ))}
               </div>
             </div>

@@ -11,7 +11,7 @@ import {
 import { Contact } from "@/components/Form";
 import { WorkingItem } from "./WorkingItem";
 import { WorkingContent } from "./WorkingCategory";
-import { BasicLayout } from "../BasicLayout";
+import { BasicLayout } from "@/components/TopPage/BasicLayout";
 
 const WORKING_ITEMS: React.ComponentProps<typeof WorkingItem>[] = [
   {
