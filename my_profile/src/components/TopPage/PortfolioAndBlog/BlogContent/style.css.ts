@@ -15,14 +15,17 @@ export const titleStyle = style({
   fontSize: fontSizes.xl,
   fontWeight: fontWeight.bold,
   marginBottom: space.xml,
+  scrollMarginTop: '90px',
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
       fontSize: fontSizes.xxl,
       marginBottom: space.l,
+      scrollMarginTop: '80px',
     },
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       fontSize: fontSizes.xxml,
       marginBottom: space.xxl,
+      scrollMarginTop: '100px',
     },
   },
 });

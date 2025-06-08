@@ -24,8 +24,14 @@ const NAVBAR_ITEMS: Omit<
     name: "Home",
   },
   {
-    href: "#PortfolioAndBlog",
-    name: "Portfolio & Blog",
+    href: "#Portfolio",
+    name: "Portfolio",
+    submenuHrefAll: "/portfolio",
+  },
+  {
+    href: "#Blog",
+    name: "Blog",
+    submenuHrefAll: "/blog",
   },
   {
     href: "#Skills",
@@ -37,7 +43,7 @@ const NAVBAR_ITEMS: Omit<
   },
   {
     href: "#Working",
-    name: "Working",
+    name: "Works",
   },
 ] as const;
 

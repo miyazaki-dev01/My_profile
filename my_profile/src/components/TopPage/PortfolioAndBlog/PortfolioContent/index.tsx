@@ -7,7 +7,9 @@ import { PortfoliosProps } from "@/types/PortfolioCard";
 export const PortfolioContent = ({ portfolios }: PortfoliosProps) => {
   return (
     <div>
-      <div className={titleStyle}>Portfolio</div>
+      <div className={titleStyle} id="Portfolio">
+        Portfolio
+      </div>
       <div className={portfolioStyle}>
         {portfolios.map((portfolio) => (
           <PortfolioCard key={portfolio.id} {...portfolio} />

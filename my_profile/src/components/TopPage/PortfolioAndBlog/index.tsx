@@ -13,7 +13,7 @@ type PortfolioAndBlogProps = {
 
 export const PortfolioAndBlog = ({ portfolios, blogs }: PortfolioAndBlogProps) => {
   return (
-    <BasicLayout themeColor="black" id="PortfolioAndBlog">
+    <BasicLayout themeColor="black">
       <div className={PortfolioAndBlogStyle}>
         <PortfolioContent portfolios={portfolios} />
         <BlogContent blogs={blogs} />
