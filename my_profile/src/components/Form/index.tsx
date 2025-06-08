@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   contactButtonStyle,
   OverlayStyle,
@@ -23,51 +23,24 @@ import {
   thanksCloseStyle,
   thanksCloseButtonStyle,
 } from "./style.css";
+import { useContactForm } from "@/hooks/useContactForm";
 
-export const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
+export const Contact = () => {
+  const {
+    formData,
+    isSubmitting,
+    error,
+    submitted,
+    handleChange,
+    handleSubmit,
+  } = useContactForm();
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError("");
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setSuccess(true);
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        const errorData = await response.json();
-        setError(errorData.message || "送信に失敗しました。");
-      }
-    } catch (err) {
-      console.error(err);
-      setError(
-        "送信中にエラーが発生しました。\nお手数ですがもう一度送信をお願いいたします。"
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  // ReactのSSR環境対応（マウント後に表示する）
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+  if (!hasMounted) return null;
 
   return (
     <>
@@ -94,7 +67,7 @@ export const Contact: React.FC = () => {
           className={`hs-overlay-open:opacity-100 hs-overlay-open:mt-7 ${modalStyle}`}
         >
           <div className={modalContentStyle}>
-            {success ? (
+            {submitted ? (
               <>
                 <div className={thanksStyle}>
                   <h3 id="hs-vertically-centered-modal-label">

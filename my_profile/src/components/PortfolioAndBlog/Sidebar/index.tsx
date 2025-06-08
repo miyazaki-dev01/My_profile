@@ -18,7 +18,9 @@ export default function Sidebar() {
           </Link>
         ))}
         <div className="mt-8 text-sm text-gray-600">
-          Contact
+          <Link href="/contact" className="">
+            Contact
+          </Link>
           <div className="text-xs mt-2">© 2025 YourName profile</div>
         </div>
       </nav>
