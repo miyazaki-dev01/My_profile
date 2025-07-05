@@ -15,9 +15,9 @@ export const PortfolioContent = ({ portfolios }: PortfoliosProps) => {
           <PortfolioCard key={portfolio.id} {...portfolio} />
         ))}
       </div>
-      <div className={viewAllStyle}>
-        <Link href="/portfolio">View All</Link>
-      </div>
+      <Link href="/portfolio" className={viewAllStyle}>
+        View All
+      </Link>
     </div>
   );
 };

@@ -13,7 +13,6 @@ export const headerStyle = style({
   left: 0,
   width: "100%",
   zIndex: 50,
-  paddingBlock: space.s,
   boxShadow: `0 5px 5px ${colors.lightGray}`,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
@@ -90,6 +89,7 @@ export const contentStyle = style({
   "@media": {
     [`screen and (min-width: ${breakpoints.mobile}px)`]: {
       display: "block",
+      overflow: "visible",
     },
   },
 });

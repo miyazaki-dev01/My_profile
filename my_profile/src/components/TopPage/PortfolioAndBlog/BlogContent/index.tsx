@@ -24,7 +24,9 @@ import { BlogsProps } from "@/types/BlogCard";
 export const BlogContent = ({ blogs }: BlogsProps) => {
   return (
     <div className={blogStyle}>
-      <div className={titleStyle} id="Blog">Blog</div>
+      <div className={titleStyle} id="Blog">
+        Blog
+      </div>
       <div className={swiperStyle}>
         {/* カスタム矢印ボタン（左） */}
         <div className={`custom-prev ${arrowLeftStyle}`}>
@@ -88,9 +90,9 @@ export const BlogContent = ({ blogs }: BlogsProps) => {
         </div>
       </div>
 
-      <div className={viewAllStyle}>
-        <Link href="/blog">View All</Link>
-      </div>
+      <Link href="/blog" className={viewAllStyle}>
+        View All
+      </Link>
     </div>
   );
 };

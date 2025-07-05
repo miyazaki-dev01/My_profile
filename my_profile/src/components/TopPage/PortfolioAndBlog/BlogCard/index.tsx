@@ -20,7 +20,7 @@ export const BlogCard = ({
   articleSlug,
   updatedAt,
 }: BlogCardProps) => {
-  const formattedDate = dayjs(updatedAt).format("YY.MM.DD");
+  const formattedDate = dayjs(updatedAt).format("YYYY.MM.DD");
 
   return (
     <div className={cardStyle}>

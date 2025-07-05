@@ -69,7 +69,8 @@ export const categoryStyle = style({
   color: colors.brack,
   borderRadius: "100vh",
   fontSize: fontSizes.xs,
-  padding: `4px 8px`,
+  fontWeight: fontWeight.normal,
+  padding: `2.5px 8px`,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
       fontSize: fontSizes.xxs,
@@ -82,6 +83,11 @@ export const dateStyle = style({
   color: colors.lightGray,
   fontSize: fontSizes.xs,
   margin: "0 2% 0 auto",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.mobile}px)`]: {
+      fontSize: fontSizes.s,
+    },
+  },
 });
 
 export const titleStyle = style({

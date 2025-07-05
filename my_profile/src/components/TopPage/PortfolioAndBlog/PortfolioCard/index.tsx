@@ -27,7 +27,7 @@ export const PortfolioCard = ({
           className={imageStyle}
         />
       </a>
-      <a href={url}>
+      <a href={`/portfolio/${articleSlug}`}>
         <p className={titleStyle}>{title}</p>
         <p className={descriptionStyle}>{description}</p>
       </a>
