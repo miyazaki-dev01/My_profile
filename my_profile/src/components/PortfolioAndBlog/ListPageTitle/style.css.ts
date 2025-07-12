@@ -22,7 +22,8 @@ export const titleDivStyle = style({
 });
 
 export const PortfolioTitleStyle = style({
-  fontSize: fontSizes.xxl,
+  color: colors.brack,
+  fontSize: fontSizes.xl,
   fontWeight: fontWeight.bold,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {

@@ -46,10 +46,10 @@ export const divStyle = style({
 
 export const footerStyle = style({
   color: colors.darkGray,
-  fontWeight: fontWeight.midium,
+  fontWeight: fontWeight.normal,
   paddingTop: "1.25rem",
   paddingBottom: "1.25rem",
-  paddingLeft: "1.25rem",
+  paddingLeft: "1.5rem",
   flexShrink: 0,
   zIndex: 40,
   fontSize: fontSizes.xs,

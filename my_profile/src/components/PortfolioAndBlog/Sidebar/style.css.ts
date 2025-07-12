@@ -46,6 +46,7 @@ export const navStyle = style({
 });
 
 export const linksStyle = style({
+  color: colors.brack,
   display: "flex",
   flexDirection: "column",
   gap: space.xxxl,
@@ -67,6 +68,7 @@ export const contactStyle = style({
 });
 
 export const contactLinkStyle = style({
+  color: colors.brack,
   fontSize: fontSizes.l,
   fontWeight: fontWeight.normal,
   width: "fit-content",
@@ -78,7 +80,7 @@ export const contactLinkStyle = style({
 export const copyrightStyle = style({
   fontSize: fontSizes.xs,
   color: colors.darkGray,
-  fontWeight: fontWeight.midium,
+  fontWeight: fontWeight.normal,
 });
 
 // SP
@@ -117,13 +119,15 @@ export const mobileMenuStyle = style({
   width: "100vw",
   height: "100vh",
   backgroundColor: colors.brack,
-  transition: "opacity 0.3s ease-in-out",
-  zIndex: 60,
   opacity: 0,
+  visibility: "hidden",
+  transition: "opacity 0.3s ease-in-out, visibility 0.3s ease-in-out",
+  zIndex: 60,
 });
 
 export const mobileMenuOpenStyle = style({
   opacity: 1,
+  visibility: "visible",
 });
 
 export const mobileMenuDivStyle = style({

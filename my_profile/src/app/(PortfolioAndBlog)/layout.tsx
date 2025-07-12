@@ -19,7 +19,7 @@ export default function RootLayout({
         <div className={divStyle}>{children}</div>
       </main>
       <footer className={footerStyle}>
-        <div>© 2025 Miyazaki All rights reserved.</div>
+        © 2025 Miyazaki All rights reserved.
       </footer>
     </div>
   );
