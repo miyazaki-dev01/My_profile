@@ -1,5 +1,11 @@
 import React from "react";
 import Sidebar from "@/components/PortfolioAndBlog/Sidebar";
+import {
+  portfolioAndBlogStyle,
+  mainStyle,
+  divStyle,
+  footerStyle,
+} from "./style.css";
 
 export default function RootLayout({
   children,
@@ -7,9 +13,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex">
+    <div className={portfolioAndBlogStyle}>
       <Sidebar />
-      <main className="ml-48 w-full p-8">{children}</main>
+      <main className={mainStyle}>
+        <div className={divStyle}>{children}</div>
+      </main>
+      <footer className={footerStyle}>
+        <div>© 2025 Miyazaki All rights reserved.</div>
+      </footer>
     </div>
   );
 }
