@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
     <>
       <div className={FooterStyle}>
         <div className={FooterTextStyle}>
-          <span>Copyright © 2025 Miyazaki&apos;s profile</span>
+          <span>© 2025 Miyazaki All rights reserved.</span>
         </div>
       </div>
     </>

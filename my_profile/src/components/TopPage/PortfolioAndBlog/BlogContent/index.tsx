@@ -90,7 +90,12 @@ export const BlogContent = ({ blogs }: BlogsProps) => {
         </div>
       </div>
 
-      <Link href="/blog" className={viewAllStyle}>
+      <Link
+        href="/blog"
+        className={viewAllStyle}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         View All
       </Link>
     </div>
