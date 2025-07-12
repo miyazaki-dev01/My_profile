@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   itemStyle,
   dropdownStyle,
@@ -62,23 +63,25 @@ export const NavbarContent: React.FC<Props> = ({
             aria-labelledby="hs-mega-menu"
           >
             <div className={dropdownColStyle}>
-              <a className={dropdownLinkStyle} href={href} onClick={onClick}>
+              <Link className={dropdownLinkStyle} href={href} onClick={onClick}>
                 New
-              </a>
-              <a
+              </Link>
+              <Link
                 className={dropdownLinkStyle}
                 href={submenuHrefAll}
                 onClick={onClick}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 All
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       ) : (
-        <a className={itemStyle} href={href} onClick={onClick}>
+        <Link className={itemStyle} href={href} onClick={onClick}>
           {name}
-        </a>
+        </Link>
       )}
     </>
   );

@@ -16,7 +16,7 @@ export const headerStyle = style({
   boxShadow: `0 5px 5px ${colors.lightGray}`,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
-      paddingBlock: space.xs,
+      paddingBlock: "10px",
     },
   },
 });
@@ -25,8 +25,8 @@ export const navStyle = style({
   maxWidth: breakpoints.maxWith,
   width: "100%",
   margin: "0 auto",
-  paddingLeft: space.l,
-  paddingRight: space.l,
+  paddingLeft: space.ml,
+  paddingRight: space.ml,
   display: "block",
   "@media": {
     [`screen and (min-width: ${breakpoints.mobile}px)`]: {

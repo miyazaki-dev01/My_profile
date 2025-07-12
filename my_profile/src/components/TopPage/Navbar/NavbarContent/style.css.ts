@@ -10,10 +10,6 @@ export const itemStyle = style({
   ":hover": {
     color: colors.lightGray,
   },
-  ":focus": {
-    outline: "none",
-    color: colors.lightGray,
-  },
 });
 
 export const dropdownStyle = style({
@@ -30,10 +26,6 @@ export const dropdownButtonStyle = style({
   ":hover": {
     color: colors.lightGray,
   },
-  ":focus": {
-    outline: "none",
-    color: colors.lightGray,
-  },
   "@media": {
     [`screen and (min-width: ${breakpoints.mobile}px)`]: {
       paddingTop: "18px",
@@ -45,8 +37,8 @@ export const dropdownButtonStyle = style({
 export const dropdownIconStyle = style({
   transitionDuration: "300ms",
   flexShrink: 0,
-  inlineSize: "1rem", // width
-  blockSize: "1rem", // height
+  inlineSize: "1rem",
+  blockSize: "1rem",
   marginLeft: space.xxs,
 });
 

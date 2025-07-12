@@ -14,13 +14,14 @@ import {
 } from "./style.css";
 import { NavbarContent } from "./NavbarContent";
 import breakpoints from "@/theme/breakpoints";
+import Link from "next/link";
 
 const NAVBAR_ITEMS: Omit<
   React.ComponentProps<typeof NavbarContent>,
   "onClick"
 >[] = [
   {
-    href: "#",
+    href: "#Home",
     name: "Home",
   },
   {
@@ -61,9 +62,9 @@ export const Navbar: React.FC = () => {
       <nav className={navStyle}>
         {/* ホームアイコン */}
         <div className={iconStyle}>
-          <a className={hoemButtonStyle} href="#">
+          <Link className={hoemButtonStyle} href="#Home">
             Miyazaki&apos;s profile
-          </a>
+          </Link>
           <div className="sm:hidden">
             <button
               type="button"
@@ -85,9 +86,9 @@ export const Navbar: React.FC = () => {
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                <line x1="3" x2="21" y1="6" y2="6" />
-                <line x1="3" x2="21" y1="12" y2="12" />
-                <line x1="3" x2="21" y1="18" y2="18" />
+                <line x1="0" x2="24" y1="4" y2="4" />
+                <line x1="0" x2="24" y1="12" y2="12" />
+                <line x1="0" x2="24" y1="20" y2="20" />
               </svg>
               <svg
                 className={`hs-collapse-open:block hidden ${closeButton}`}
@@ -99,8 +100,8 @@ export const Navbar: React.FC = () => {
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
+                <path d="M20 4 4 20" />
+                <path d="m4 4 16 16" />
               </svg>
               <span className="sr-only">Toggle navigation</span>
             </button>

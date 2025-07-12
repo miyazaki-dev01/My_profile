@@ -36,7 +36,7 @@ const ICON_ITEMS: React.ComponentProps<typeof IconLink>[] = [
 
 export const TopContent = ({ topData }: { topData: TopContentProps }) => {
   return (
-    <BasicLayout themeColor="white">
+    <BasicLayout id="Home" themeColor="white">
       <div className={TopContentStyle}>
         {/* プロフィール画像 */}
         <div>
