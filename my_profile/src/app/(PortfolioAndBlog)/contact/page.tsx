@@ -3,6 +3,22 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useContactForm } from "@/hooks/useContactForm";
+import ListPageTitle from "@/components/PortfolioAndBlog/ListPageTitle";
+import {
+  contactStyle,
+  thanksStyle,
+  thanksTitleStyle,
+  thanksTextStyle,
+  errorStyle,
+  formStyle,
+  formContentStyle,
+  fromLavelStyle,
+  formInputStyle,
+  formTextareaStyle,
+  submitStyle,
+  submitButtonStyle,
+} from "./style.css";
+import breakpoints from "@/theme/breakpoints";
 
 export default function Contact() {
   const {
@@ -14,6 +30,24 @@ export default function Contact() {
     handleSubmit,
   } = useContactForm();
 
+  // メッセージエリアの行数設定（タブレット幅以上は12行）
+  const [rows, setRows] = useState(6);
+  useEffect(() => {
+    const updateRows = () => {
+      if (window.innerWidth >= breakpoints.tablet) {
+        setRows(12);
+      } else {
+        setRows(6);
+      }
+    };
+    updateRows();
+    window.addEventListener("resize", updateRows);
+
+    return () => {
+      window.removeEventListener("resize", updateRows);
+    };
+  }, []);
+
   // ReactのSSR環境対応（マウント後に表示する）
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
@@ -22,56 +56,70 @@ export default function Contact() {
   if (!hasMounted) return null;
 
   return (
-    <div className="">
-      <h2>Contact</h2>
-      {submitted ? (
-        <h3 id="hs-vertically-centered-modal-label">
-          <span>Thank You!</span>
-          <br />
-          <span>返信があるまで少々お待ちください。</span>
-        </h3>
-      ) : (
-        <>
-          {error && <p>{error}</p>}
-          <form onSubmit={handleSubmit}>
-            <label>
-              Name:
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                required
-              />
-            </label>
-            <label>
-              Email:
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                required
-              />
-            </label>
-            <label>
-              Message:
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                required
-              />
-            </label>
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Sending..." : "Send"}
-            </button>
-          </form>
-        </>
-      )}
-    </div>
+    <>
+      <ListPageTitle title="Contact" isBorder={false} />
+      <div className={contactStyle}>
+        {submitted ? (
+          <div className={thanksStyle}>
+            <span className={thanksTitleStyle}>Thank You!</span>
+            <span className={thanksTextStyle}>
+              返信があるまで少々お待ちください。
+            </span>
+          </div>
+        ) : (
+          <>
+            {error && <p className={errorStyle}>{error}</p>}
+
+            <form onSubmit={handleSubmit} className={formStyle}>
+              <div className={formContentStyle}>
+                <label className={fromLavelStyle}>name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  required
+                  className={formInputStyle}
+                />
+              </div>
+              <div className={formContentStyle}>
+                <label className={fromLavelStyle}>address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  required
+                  className={formInputStyle}
+                />
+              </div>
+              <div className={formContentStyle}>
+                <label className={fromLavelStyle}>message</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  disabled={isSubmitting}
+                  required
+                  rows={rows}
+                  className={formTextareaStyle}
+                />
+              </div>
+              <div className={submitStyle}>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={submitButtonStyle}
+                >
+                  {isSubmitting ? "Sending..." : "Send"}
+                </button>
+              </div>
+            </form>
+          </>
+        )}
+      </div>
+    </>
   );
 }
