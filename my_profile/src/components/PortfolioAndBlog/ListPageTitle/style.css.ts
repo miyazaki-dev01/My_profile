@@ -16,6 +16,13 @@ export const titleDivStyle = style({
       width: "100%",
       paddingBottom: space.m,
       backgroundColor: colors.paleWhite,
+    },
+  },
+});
+
+export const BorderStyle = style({
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       borderBottom: `.5px solid ${colors.lightGray}`,
     },
   },

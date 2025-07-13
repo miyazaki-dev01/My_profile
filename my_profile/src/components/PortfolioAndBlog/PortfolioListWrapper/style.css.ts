@@ -12,9 +12,12 @@ export const portfoliosStyle = style({
   marginTop: space.xxl,
   marginRight: "-1.5rem",
   marginLeft: "-1.5rem",
+  maxWidth: "900px",
   "@media": {
     [`screen and (min-width: ${breakpoints.mobile}px)`]: {
       marginTop: space.xxl,
+      marginRight: "auto",
+      marginLeft: "auto",
     },
   },
 });

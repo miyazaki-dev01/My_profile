@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { titleDivStyle, PortfolioTitleStyle } from "./style.css";
+import { titleDivStyle, PortfolioTitleStyle, BorderStyle } from "./style.css";
 import breakpoints from "@/theme/breakpoints";
 
 interface ListPageTitleProps {
   title: string;
+  isBorder?: boolean;
 }
 
-const ListPageTitle: React.FC<ListPageTitleProps> = ({ title }) => {
+const ListPageTitle: React.FC<ListPageTitleProps> = ({
+  title,
+  isBorder = true,
+}) => {
   const [isTabletOrSmaller, setIsTabletOrSmaller] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsTabletOrSmaller(window.innerWidth <= breakpoints.desktop); // 例: 1024px 以下をタブレット以下とする
+      setIsTabletOrSmaller(window.innerWidth <= breakpoints.desktop);
     };
 
     handleResize(); // 初回判定
@@ -25,7 +29,11 @@ const ListPageTitle: React.FC<ListPageTitleProps> = ({ title }) => {
   }
 
   return (
-    <div className={`w-[calc(100%_+_48px)] ${titleDivStyle}`}>
+    <div
+      className={`w-[calc(100%_+_48px)] ${titleDivStyle} ${
+        isBorder ? BorderStyle : ""
+      }`}
+    >
       <h1 className={PortfolioTitleStyle}>{title}</h1>
     </div>
   );
