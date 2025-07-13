@@ -2,7 +2,7 @@ import breakpoints from "@/theme/breakpoints";
 import colors from "@/theme/colors";
 import fontSizes from "@/theme/fontSize";
 import fontWeight from "@/theme/fontWeight";
-import { fontFace, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 
 export const portfolioAndBlogStyle = style({
   display: "flex",
