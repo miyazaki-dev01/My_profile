@@ -1,41 +1,55 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 import { BlogsProps } from "@/types/BlogCard";
 import dayjs from "dayjs";
 import Image from "next/image";
+import ListPageTitle from "../ListPageTitle";
+import {
+  blogsStyle,
+  blogStyle,
+  categoryStyle,
+  blogTitleStyle,
+  blogDateStyel,
+  blogImageDivStyle,
+  blogImageStyle,
+} from "./style.css";
 
 export default function BlogListWrapper({ blogs }: BlogsProps) {
   useScrollRestoration();
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-4">Blog</h1>
-      <div className="space-y-4">
+      <ListPageTitle title="Blog" isBorder={false} />
+      <div className={blogsStyle}>
         {blogs.map((blog) => (
-          <div
+          <Link
             key={blog.id}
-            className="flex items-center justify-between border-b py-2"
+            href={`/blog/${blog.articleSlug}`}
+            className={blogStyle}
           >
             <div>
-              <span className="text-xs border px-2 py-1 rounded-full">
-                {blog.category}
-              </span>
-              <h2 className="font-bold">{blog.title}</h2>
-              <p className="text-sm text-gray-500">
-                {dayjs(blog.updatedAt).format("YY.MM.DD")}
+              {blog.category && blog.category.length > 0 && (
+                <span className={categoryStyle}>{blog.category}</span>
+              )}
+              <h2 className={blogTitleStyle}>{blog.title}</h2>
+              <p className={blogDateStyel}>
+                {dayjs(blog.updatedAt).format("YYYY.MM.DD")}
               </p>
             </div>
-            <Image
-              className="w-20 h-14 bg-gray-300 rounded"
-              src={blog.thumbnail.url}
-              alt="Features Image"
-              width={blog.thumbnail.width}
-              height={blog.thumbnail.height}
-              unoptimized
-            />
-          </div>
+            <div className={blogImageDivStyle}>
+              <Image
+                src={blog.thumbnail.url}
+                alt="Blog Image"
+                width={blog.thumbnail.width}
+                height={blog.thumbnail.height}
+                unoptimized
+                className={blogImageStyle}
+              />
+            </div>
+          </Link>
         ))}
       </div>
     </div>
