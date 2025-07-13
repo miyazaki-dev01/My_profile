@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { titleDivStyle, PortfolioTitleStyle, BorderStyle } from "./style.css";
 import breakpoints from "@/theme/breakpoints";
