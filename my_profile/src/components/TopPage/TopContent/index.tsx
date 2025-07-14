@@ -47,6 +47,7 @@ export const TopContent = ({ topData }: { topData: TopContentProps }) => {
             height={topData?.image.height ?? 500}
             unoptimized
             className={imageStyle}
+            priority
           />
         </div>
 
