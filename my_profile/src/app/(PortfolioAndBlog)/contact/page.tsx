@@ -4,6 +4,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useContactForm } from "@/hooks/useContactForm";
 import ListPageTitle from "@/components/PortfolioAndBlog/ListPageTitle";
+import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 import {
   contactStyle,
   thanksStyle,
@@ -29,6 +30,9 @@ export default function Contact() {
     handleChange,
     handleSubmit,
   } = useContactForm();
+
+  // スクロール保持
+  useScrollRestoration();
 
   // メッセージエリアの行数設定（タブレット幅以上は12行）
   const [rows, setRows] = useState(6);

@@ -1,32 +1,62 @@
 "use client";
 
-import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useCallback,
+  useState,
+} from "react";
 
+/**
+ * ページ遷移時にスクロール位置を保存・復元するカスタムフック
+ * - ページごとにsessionStorageで管理
+ * - 戻る/進む時に前回の位置へ自動スクロール
+ */
 export function useScrollRestoration() {
-  const pathname = usePathname(); // 現在のパスを取得
-  const searchParams = useSearchParams(); // 現在のクエリパラメータを取得
-  const qs = searchParams.toString(); // クエリパラメータを文字列化
-  const key = `scroll-pos:${pathname}${qs ? "?" + qs : ""}`; // URLごとに一意のキーを生成
+  const pathname = usePathname();
+  const key = useMemo(() => `_next_scroll_${pathname}`, [pathname]);
+
+  // マウント済みかどうかを判定
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // レイアウト反映前にスクロール位置を復元 or トップに戻す
+  useLayoutEffect(() => {
+    if (!hasMounted) return; // マウント前は何もしない
+    const stored = sessionStorage.getItem(key);
+    if (stored) {
+      window.scrollTo(0, +stored);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [key, hasMounted]);
+
+  // スクロールごとに最新位置を保存
+  const onScroll = useCallback(() => {
+    const y = window.scrollY;
+    if (y !== 0) {
+      sessionStorage.setItem(key, String(y));
+    } else {
+      sessionStorage.removeItem(key);
+    }
+  }, [key]);
 
   useEffect(() => {
-    // ページマウント時にスクロール位置を復元
-    const saved = sessionStorage.getItem(key);
-    if (saved) {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, parseInt(saved, 0)); // 保存されたスクロール位置に移動
-      });
-    }
-
-    // スクロールイベントを監視して位置を保存
-    const onScroll = () => {
-      sessionStorage.setItem(key, window.scrollY.toString()); // 現在のスクロール位置を保存
-    };
     window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [onScroll]);
 
-    return () => {
-      window.removeEventListener("scroll", onScroll); // イベントリスナーを解除
-      sessionStorage.setItem(key, window.scrollY.toString()); // アンマウント時に位置を保存
-    };
-  }, [key]); // keyが変わるたびにエフェクトを再実行
+  // ページ閉じる直前に保存データをクリア
+  const onBeforeUnload = useCallback(() => {
+    sessionStorage.removeItem(key);
+  }, [key]);
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", onBeforeUnload);
+    return () => window.removeEventListener("beforeunload", onBeforeUnload);
+  }, [onBeforeUnload]);
 }
