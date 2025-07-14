@@ -10,8 +10,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  background-color: #F8F5EE;
-  scroll-behavior: smooth;
+  background-color: #f8f5ee;
   line-height: normal;
 }
 
