@@ -7,6 +7,8 @@ import {
   footerStyle,
 } from "./style.css";
 
+export const dynamic = "force-static"; // 静的生成
+
 export default function RootLayout({
   children,
 }: {
