@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { PortfolioCard } from "../PortfolioCard";
 import { titleStyle, portfolioStyle, viewAllStyle } from "./style.css";
-import { PortfoliosProps } from "@/types/PortfolioCard";
+import { PortfolioListProps } from "@/types/PortfolioCard";
 
-export const PortfolioContent = ({ portfolios }: PortfoliosProps) => {
+export const PortfolioContent = ({ portfolios }: PortfolioListProps) => {
   return (
     <div>
       <div className={titleStyle} id="Portfolio">

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useScrollRestoration } from "@/hooks/useScrollRestoration";
-import { PortfoliosProps } from "@/types/PortfolioCard";
+import { PortfolioListProps } from "@/types/PortfolioCard";
 import ListPageTitle from "@/components/PortfolioAndBlog/ListPageTitle";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +19,7 @@ import {
   portfolioDiscriptionStyle,
 } from "./style.css";
 
-export default function PortfolioListWrapper({ portfolios }: PortfoliosProps) {
+export default function PortfolioListWrapper({ portfolios }: PortfolioListProps) {
   useScrollRestoration();
 
   // ページの全リソース（画像・CSSなど含む）が読み込まれたかどうかを判定するカスタムフック
