@@ -1,6 +1,7 @@
 import { createClient } from "microcms-js-sdk";
 import { TopContentProps } from "../types/topContent";
 import { PortfolioCardProps } from "@/types/PortfolioCard";
+import { PortfolioDetailProps } from "@/types/PortfolioContent";
 import { BlogCardProps } from "@/types/BlogCard";
 
 // 環境変数にMICROCMS_SERVICE_DOMAINが設定されていない場合はエラーを投げる
@@ -19,13 +20,17 @@ export const client = createClient({
   serviceDomain: process.env.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN,
 });
 
-// トップコンテンツのデータ取得
+// --------------------------------------------------
+// トップページ
+// --------------------------------------------------
+
+// トップコンテンツ
 export const getTopContentData = async (): Promise<TopContentProps> => {
   const data = await client.get({ endpoint: "top-content" });
   return data;
 };
 
-// ポートフォリオ一覧のデータ取得（トップページ）
+// ポートフォリオ
 export const getPortfolioListDataForTop = async (): Promise<
   PortfolioCardProps[]
 > => {
@@ -36,16 +41,7 @@ export const getPortfolioListDataForTop = async (): Promise<
   return data.contents;
 };
 
-// ポートフォリオ一覧のデータ取得
-export const getPortfolioListData = async (): Promise<PortfolioCardProps[]> => {
-  const data = await client.get({
-    endpoint: "portfolio",
-    queries: { fields: "id,title,description,thumbnail,articleSlug" },
-  });
-  return data.contents;
-};
-
-// ブログ一覧のデータ取得（トップページ）
+// ブログ
 export const getBlogListDataForTop = async (): Promise<BlogCardProps[]> => {
   const data = await client.get({
     endpoint: "blog",
@@ -57,7 +53,20 @@ export const getBlogListDataForTop = async (): Promise<BlogCardProps[]> => {
   return data.contents;
 };
 
-// ブログ一覧のデータ取得
+// --------------------------------------------------
+// 一覧ページ
+// --------------------------------------------------
+
+// ポートフォリオ一覧
+export const getPortfolioListData = async (): Promise<PortfolioCardProps[]> => {
+  const data = await client.get({
+    endpoint: "portfolio",
+    queries: { fields: "id,title,description,thumbnail,articleSlug" },
+  });
+  return data.contents;
+};
+
+// ブログ一覧
 export const getBlogListData = async (): Promise<BlogCardProps[]> => {
   const data = await client.get({
     endpoint: "blog",
@@ -66,4 +75,32 @@ export const getBlogListData = async (): Promise<BlogCardProps[]> => {
     },
   });
   return data.contents;
+};
+
+// --------------------------------------------------
+// ポートフォリオ詳細
+// --------------------------------------------------
+
+// カスタムURLを全件取得
+export const getAllPortfolioSlugs = async (): Promise<
+  { articleSlug: string }[] | null
+> => {
+  const data = await client.get({
+    endpoint: "portfolio",
+    queries: {
+      fields: "articleSlug",
+    },
+  });
+  return data.contents;
+};
+
+// slugに対応する詳細を取得
+export const getPortfolioBySlug = async (
+  slug: string
+): Promise<PortfolioDetailProps | null> => {
+  const data = await client.get({
+    endpoint: "portfolio",
+    queries: { filters: `articleSlug[equals]${slug}` },
+  });
+  return data.contents[0];
 };

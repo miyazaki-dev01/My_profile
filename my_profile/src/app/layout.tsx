@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import PrelineScript from "../components/PrelineScript";
 import Script from "next/script";
+import { META } from "@/constants/meta";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Miyazaki's profile",
-  description: "宮﨑貴大のプロフィールサイトです。",
+  title: META.siteTitle,
+  description: META.siteDescription,
 };
 
 export default function RootLayout({
