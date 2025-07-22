@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { URL } from "@/constants/url";
-import type { MetaContentData } from "@/types/meta";
+import type { MetaContentData } from "@/types/Meta";
 
 type GenerateMetadataArgs = {
   slug: string ;
