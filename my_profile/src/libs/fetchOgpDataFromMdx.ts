@@ -1,15 +1,9 @@
-import { serialize } from "next-mdx-remote/serialize";
-import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism-plus";
-import rehypeCodeTitles from "rehype-code-titles";
 import { fetchOgpData } from "@/libs/fetchOgpData";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { OgpCache } from "@/types/ogp";
 
-export const parseMdx = async (
+export const fetchOgpDataFromMdx = async (
   mdxText: string
 ): Promise<{
-  mdxSource: MDXRemoteSerializeResult;
   ogpDataList: OgpCache;
 }> => {
   const ogpDataList: OgpCache = {};
@@ -35,19 +29,5 @@ export const parseMdx = async (
     ogpDataList[url] = data;
   }
 
-  // MDX本体を変換
-  const mdxSource = await serialize(mdxText, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        rehypeCodeTitles,
-        [rehypePrism, { showLineNumbers: true }],
-      ],
-      format: "mdx",
-    },
-  });
-
-  return { mdxSource, ogpDataList };
+  return { ogpDataList };
 };
-
-export default parseMdx;

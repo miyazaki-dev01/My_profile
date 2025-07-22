@@ -7,25 +7,20 @@ import { PortfolioDetailProps } from "@/types/PortfolioContent";
 import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 import { usePageLoading } from "@/hooks/usePageLoading";
 import Loader from "@/components/PortfolioAndBlog/Loader";
-import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
-import { MdxComponents } from "@/components/PortfolioAndBlog/ContentPage/MdxComponents";
 import "@/styles/prism.css";
 import * as styles from "./style.css";
 import { SnsShareIcons } from "@/components/PortfolioAndBlog/ContentPage/SnsShareIcon";
 import { URL } from "@/constants/url";
 import { PATH } from "@/constants/paths";
-import type { OgpCache } from "@/types/ogp";
 
 type Props = {
   portfolioContent: PortfolioDetailProps;
-  mdxSource: MDXRemoteSerializeResult;
-  ogpDataList: OgpCache;
+  children: React.ReactNode;
 };
 
 export default function PortfolioClientWrapper({
   portfolioContent,
-  mdxSource,
-  ogpDataList,
+  children,
 }: Props) {
   useScrollRestoration();
 
@@ -64,10 +59,9 @@ export default function PortfolioClientWrapper({
               </div>
             </Link>
           </div>
-          <MDXRemote
-            {...mdxSource}
-            components={MdxComponents(portfolioContent.images, ogpDataList)}
-          />
+
+          {children}
+
           <div>
             <SnsShareIcons url={url} title={portfolioContent.title} />
           </div>

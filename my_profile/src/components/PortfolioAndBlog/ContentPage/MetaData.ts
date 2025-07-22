@@ -3,19 +3,19 @@ import { URL } from "@/constants/url";
 import type { MetaContentData } from "@/types/meta";
 
 type GenerateMetadataArgs = {
-  params: { slug: string };
+  slug: string ;
   getContentBySlug: (slug: string) => Promise<MetaContentData | null>;
   pathPrefix: string;
   siteName: string;
 };
 
 export async function generateMetadataByContent({
-  params,
+  slug,
   getContentBySlug,
   pathPrefix,
   siteName,
 }: GenerateMetadataArgs): Promise<Metadata> {
-  const content = await getContentBySlug(params.slug);
+  const content = await getContentBySlug(slug);
 
   if (!content) return {};
 

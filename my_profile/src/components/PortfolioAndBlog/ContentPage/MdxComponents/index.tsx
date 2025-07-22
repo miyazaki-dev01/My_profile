@@ -1,80 +1,45 @@
-import React from "react";
 import { CustomImage } from "@/components/PortfolioAndBlog/ContentPage/MdxComponents/CustomImage";
 import { OgpCard } from "@/components/PortfolioAndBlog/ContentPage/MdxComponents/OgpCard";
 import * as styles from "./style.css";
+import type { MDXComponents } from "next-mdx-remote-client/rsc";
 
-// 型定義
 type CustomImageProps = React.ComponentProps<typeof CustomImage>;
 type OgpCardProps = React.ComponentProps<typeof OgpCard>;
 
-// 拡張版 components 関数
 export const MdxComponents = (
   images: CustomImageProps["images"],
   ogpMap: Record<string, OgpCardProps["ogp"]>
-) => ({
-  // hxタグ
-  h1: (props: React.ComponentPropsWithoutRef<"h1">) => (
-    <h1 className="text-2xl font-bold my-4" {...props} />
-  ),
+): MDXComponents => ({
+  // 見出し
+  h1: (props) => <h1 className="text-2xl font-bold my-4" {...props} />,
+  h2: (props) => <h2 className="text-xl font-bold my-3" {...props} />,
+  h3: (props) => <h3 className="text-lg font-semibold my-2" {...props} />,
 
-  // 太字
-  strong: (props: React.ComponentPropsWithoutRef<"strong">) => (
-    <strong className={styles.strong} {...props} />
-  ),
-
-  // 引用
-  blockquote: (props: React.ComponentPropsWithoutRef<"blockquote">) => (
+  // テキスト要素
+  p: (props) => <p className="my-2 leading-relaxed" {...props} />,
+  strong: (props) => <strong className={styles.strong} {...props} />,
+  blockquote: (props) => (
     <blockquote className={styles.blockquote} {...props} />
   ),
+  code: (props) => <code className={styles.inlineCode} {...props} />,
+  a: (props) => <a className={styles.link} {...props} />,
 
-  // 箇条書き（ul）
-  ul: (props: React.ComponentPropsWithoutRef<"ul">) => (
-    <ul className={styles.unorderedList} {...props} />
-  ),
+  // リスト
+  ul: (props) => <ul className={styles.unorderedList} {...props} />,
+  ol: (props) => <ol className={styles.orderedList} {...props} />,
+  li: (props) => <li className={styles.listItem} {...props} />,
 
-  // 番号付きリスト（ol）
-  ol: (props: React.ComponentPropsWithoutRef<"ol">) => (
-    <ol className={styles.orderedList} {...props} />
-  ),
+  // テーブル
+  table: (props) => <table className={styles.table} {...props} />,
+  thead: (props) => <thead {...props} />,
+  tbody: (props) => <tbody {...props} />,
+  tr: (props) => <tr className={styles.tableRow} {...props} />,
+  th: (props) => <th className={styles.tableHeader} {...props} />,
+  td: (props) => <td className={styles.tableCell} {...props} />,
 
-  // リスト項目
-  li: (props: React.ComponentPropsWithoutRef<"li">) => (
-    <li className={styles.listItem} {...props} />
-  ),
-
-  // インラインコード
-  code: (props: React.ComponentPropsWithoutRef<"code">) => (
-    <code className={styles.inlineCode} {...props} />
-  ),
-
-  // リンク
-  a: (props: React.ComponentPropsWithoutRef<"a">) => (
-    <a className={styles.link} {...props} />
-  ),
-
-  // テーブル関連
-  table: (props: React.ComponentPropsWithoutRef<"table">) => (
-    <table className={styles.table} {...props} />
-  ),
-  thead: (props: React.ComponentPropsWithoutRef<"thead">) => (
-    <thead {...props} />
-  ),
-  tbody: (props: React.ComponentPropsWithoutRef<"tbody">) => (
-    <tbody {...props} />
-  ),
-  tr: (props: React.ComponentPropsWithoutRef<"tr">) => (
-    <tr className={styles.tableRow} {...props} />
-  ),
-  th: (props: React.ComponentPropsWithoutRef<"th">) => (
-    <th className={styles.tableHeader} {...props} />
-  ),
-  td: (props: React.ComponentPropsWithoutRef<"td">) => (
-    <td className={styles.tableCell} {...props} />
-  ),
-
-  // 画像
-  CustomImage: (props: { idx: number }) => (
-    <CustomImage {...props} images={images} />
+  // カスタム画像
+  CustomImage: ({ idx }: { idx: number }) => (
+    <CustomImage idx={idx} images={images} />
   ),
 
   // OGPカード
@@ -83,4 +48,9 @@ export const MdxComponents = (
     if (!ogp) return null;
     return <OgpCard ogp={ogp} />;
   },
+
+  // 任意：ラッパー
+  wrapper: ({ children }) => (
+    <div className="my-20">{children}</div>
+  ),
 });
