@@ -12,6 +12,7 @@ import * as styles from "./style.css";
 import { SnsShareIcons } from "@/components/PortfolioAndBlog/ContentPage/SnsShareIcon";
 import { URL } from "@/constants/url";
 import { PATH } from "@/constants/paths";
+import { FiExternalLink } from "react-icons/fi";
 
 type Props = {
   portfolioContent: PortfolioDetailProps;
@@ -45,17 +46,29 @@ export default function PortfolioClientWrapper({
           <div className={styles.DiscriptionStyle}>
             {portfolioContent.description}
           </div>
-          <div className={styles.ImageDivStyle}>
-            <Link href={portfolioContent.serviceURL} target="_blank">
-              <Image
-                src={portfolioContent.thumbnail.url}
-                alt="Portfolio Thumbnail"
-                width={portfolioContent.thumbnail.width}
-                height={portfolioContent.thumbnail.height}
-                unoptimized
-              />
-              <div>
-                <p>サイトを見る：{portfolioContent.serviceURL}</p>
+          <div className={styles.ImageLinkDivStyle}>
+            <Link
+              href={portfolioContent.serviceURL}
+              className={styles.ImageLinkStyle}
+              target="_blank"
+            >
+              <div className={styles.ImageDivStyle}>
+                <Image
+                  src={portfolioContent.thumbnail.url}
+                  alt="Portfolio Thumbnail"
+                  width={portfolioContent.thumbnail.width}
+                  height={portfolioContent.thumbnail.height}
+                  unoptimized
+                  className={styles.ImageStyle}
+                />
+                <div className={styles.HoverTextStyle}>
+                  <p>Launch Website</p>
+                  <FiExternalLink size={24} />
+                </div>
+              </div>
+              <div className={styles.SiteUrlDivStyle}>
+                <p>{portfolioContent.serviceURL}</p>
+                <FiExternalLink />
               </div>
             </Link>
           </div>
