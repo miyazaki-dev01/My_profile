@@ -30,6 +30,7 @@ export function OgpCard({ ogp }: Props) {
   const title = ogp.ogTitle || "No Title";
   const description = ogp.ogDescription || "No description available.";
   const link = ogp.ogUrl || "#";
+  const domain = ogp.ogUrl ? new URL(ogp.ogUrl).hostname : "";
 
   return (
     <>
@@ -64,6 +65,7 @@ export function OgpCard({ ogp }: Props) {
               />
             )}
             <div className="flex-1">
+              {domain && <p className="text-xs text-gray-500 mb-1">{domain}</p>}
               <p className="text-lg font-semibold line-clamp-1">{title}</p>
               <p className="text-sm text-gray-600 line-clamp-2">
                 {description}
