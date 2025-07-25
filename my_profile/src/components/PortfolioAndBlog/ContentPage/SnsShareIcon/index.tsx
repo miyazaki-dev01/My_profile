@@ -11,6 +11,7 @@ import {
   LineShareButton,
   LineIcon,
 } from "react-share";
+import * as styles from "./style.css";
 
 type Props = {
   url: string;
@@ -19,24 +20,24 @@ type Props = {
 
 export const SnsShareIcons: React.FC<Props> = ({ url, title }) => {
   return (
-    <div>
-      <div>share</div>
+    <div className={styles.SnsShareContentStyle}>
+      <div className={styles.ShareTextStyle}>Share</div>
 
-      <div>
+      <div className={styles.ShareIconsStyle}>
         <TwitterShareButton url={url} title={title}>
-          <XIcon size={40} round />
+          <XIcon round className={styles.shareIconStyle} />
         </TwitterShareButton>
         <FacebookShareButton url={url}>
-          <FacebookIcon size={40} round />
+          <FacebookIcon round className={styles.shareIconStyle} />
         </FacebookShareButton>
         <LineShareButton url={url} title={title}>
-          <LineIcon size={40} round />
+          <LineIcon round className={styles.shareIconStyle} />
         </LineShareButton>
         <HatenaShareButton url={url} title={title}>
-          <HatenaIcon size={40} round />
+          <HatenaIcon round className={styles.shareIconStyle} />
         </HatenaShareButton>
         <LinkedinShareButton url={url} title={title}>
-          <LinkedinIcon size={40} round />
+          <LinkedinIcon round className={styles.shareIconStyle} />
         </LinkedinShareButton>
       </div>
     </div>

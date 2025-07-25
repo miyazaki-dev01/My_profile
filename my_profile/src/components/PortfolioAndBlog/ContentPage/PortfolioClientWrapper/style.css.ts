@@ -6,13 +6,18 @@ import space from "@/theme/space";
 import { style } from "@vanilla-extract/css";
 
 export const contentDivStyle = style({
-  maxWidth: "750px",
+  maxWidth: "1000px",
   marginInline: "auto",
 });
 
 export const TitleStyle = style({
   display: "flex",
   justifyContent: "center",
+  fontSize: fontSizes.l,
+  fontWeight: fontWeight.bold,
+  paddingInline: "10px",
+  lineHeight: 1.2,
+  marginTop: "20px",
 
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
@@ -27,17 +32,32 @@ export const TitleStyle = style({
 export const TitleHrStyle = style({
   borderTop: `1px solid ${colors.lightGray}`,
   marginTop: space.s,
-  marginBottom: space.xxl,
+  marginBottom: space.xml,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginBottom: space.xxl,
+    },
+  },
+});
+
+export const ContentMarginStyle = style({
+  marginInline: "0px",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginInline: "20px",
+    },
+  },
 });
 
 export const DiscriptionStyle = style({
   display: "flex",
   justifyContent: "center",
+  fontSize: fontSizes.s,
+  lineHeight: 1.4,
 
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       fontSize: fontSizes.m,
-      paddingInline: "20px",
       lineHeight: 1.3,
     },
   },
@@ -45,8 +65,14 @@ export const DiscriptionStyle = style({
 
 export const ImageLinkDivStyle = style({
   marginInline: "auto",
-  marginBlock: "50px",
-  width: "650px",
+  marginTop: "40px",
+  width: "100%",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      width: "90%",
+      marginTop: "50px",
+    },
+  },
 });
 
 export const ImageLinkStyle = style({
@@ -87,7 +113,8 @@ export const HoverTextStyle = style({
   left: "50%",
   transform: "translate(-50%, -50%)",
   color: colors.brack,
-  fontSize: fontSizes.ml,
+  fontSize: fontSizes.m,
+  gap: space.xxs,
   fontWeight: "bold",
   opacity: 0,
   visibility: "hidden",
@@ -99,6 +126,21 @@ export const HoverTextStyle = style({
       opacity: 1,
       zIndex: 10,
       visibility: "visible",
+    },
+  },
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: fontSizes.l,
+      gap: space.xs,
+    },
+  },
+});
+
+export const iconStyle = style({
+  fontSize: fontSizes.m,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: fontSizes.l,
     },
   },
 });
@@ -119,8 +161,8 @@ export const SiteUrlDivStyle = style({
   display: "flex",
   justifyContent: "flex-end",
   alignItems: "center",
-  gap: space.xs,
-  fontSize: fontSizes.s,
+  gap: space.xxs,
+  fontSize: fontSizes.xs,
   marginTop: space.xxs,
   color: colors.darkGray,
   transition: "color 0.3s ease",
@@ -131,6 +173,12 @@ export const SiteUrlDivStyle = style({
     },
     [`${ImageLinkStyle}:hover &`]: {
       color: colors.lightGray,
+    },
+  },
+  "@media": {
+    [`screen and (min-width: ${breakpoints.mobile}px)`]: {
+      gap: space.xs,
+      fontSize: fontSizes.s,
     },
   },
 });

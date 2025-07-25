@@ -43,39 +43,39 @@ export default function PortfolioClientWrapper({
         <div className={styles.contentDivStyle}>
           <h1 className={styles.TitleStyle}>{portfolioContent.title}</h1>
           <hr className={styles.TitleHrStyle} />
-          <div className={styles.DiscriptionStyle}>
-            {portfolioContent.description}
-          </div>
-          <div className={styles.ImageLinkDivStyle}>
-            <Link
-              href={portfolioContent.serviceURL}
-              className={styles.ImageLinkStyle}
-              target="_blank"
-            >
-              <div className={styles.ImageDivStyle}>
-                <Image
-                  src={portfolioContent.thumbnail.url}
-                  alt="Portfolio Thumbnail"
-                  width={portfolioContent.thumbnail.width}
-                  height={portfolioContent.thumbnail.height}
-                  unoptimized
-                  className={styles.ImageStyle}
-                />
-                <div className={styles.HoverTextStyle}>
-                  <p>Launch Website</p>
-                  <FiExternalLink size={24} />
+          <div className={styles.ContentMarginStyle}>
+            <div className={styles.DiscriptionStyle}>
+              {portfolioContent.description}
+            </div>
+            <div className={styles.ImageLinkDivStyle}>
+              <Link
+                href={portfolioContent.serviceURL}
+                className={styles.ImageLinkStyle}
+                target="_blank"
+              >
+                <div className={styles.ImageDivStyle}>
+                  <Image
+                    src={portfolioContent.thumbnail.url}
+                    alt="Portfolio Thumbnail"
+                    width={portfolioContent.thumbnail.width}
+                    height={portfolioContent.thumbnail.height}
+                    unoptimized
+                    className={styles.ImageStyle}
+                  />
+                  <div className={styles.HoverTextStyle}>
+                    <p>Launch Website</p>
+                    <FiExternalLink className={styles.iconStyle} />
+                  </div>
                 </div>
-              </div>
-              <div className={styles.SiteUrlDivStyle}>
-                <p>{portfolioContent.serviceURL}</p>
-                <FiExternalLink />
-              </div>
-            </Link>
-          </div>
+                <div className={styles.SiteUrlDivStyle}>
+                  <p>{portfolioContent.serviceURL}</p>
+                  <FiExternalLink />
+                </div>
+              </Link>
+            </div>
 
-          {children}
+            {children}
 
-          <div>
             <SnsShareIcons url={url} title={portfolioContent.title} />
           </div>
         </div>
