@@ -13,7 +13,7 @@ export const contentDivStyle = style({
 export const TitleStyle = style({
   display: "flex",
   justifyContent: "center",
-  fontSize: fontSizes.l,
+  fontSize: fontSizes.xl,
   fontWeight: fontWeight.bold,
   paddingInline: "10px",
   lineHeight: 1.2,
@@ -52,13 +52,11 @@ export const ContentMarginStyle = style({
 export const DiscriptionStyle = style({
   display: "flex",
   justifyContent: "center",
-  fontSize: fontSizes.s,
-  lineHeight: 1.4,
-
+  fontSize: fontSizes.m,
+  lineHeight: 1.5,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      fontSize: fontSizes.m,
-      lineHeight: 1.3,
+      fontSize: "18px",
     },
   },
 });

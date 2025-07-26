@@ -1,85 +1,269 @@
-import { style } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
+import breakpoints from "@/theme/breakpoints";
+import fontSizes from "@/theme/fontSize";
+import fontWeight from "@/theme/fontWeight";
+import colors from "@/theme/colors";
+import space from "@/theme/space";
 
+// ------------------------------
+// ラッパー
+// ------------------------------
+export const wrapper = style({
+  marginBlock: "90px",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginBlock: "80px",
+      marginInline: "5%",
+    },
+  },
+});
+
+// 「wrapper直下の最初の子要素だけ」にスタイルを適用
+globalStyle(`${wrapper} > :first-child`, {
+  marginTop: 0,
+});
+
+// ------------------------------
+// h2
+// ------------------------------
+export const h2 = style({
+  fontWeight: fontWeight.bold,
+  fontSize: "26px",
+  paddingBottom: space.xxs,
+  marginTop: "40px",
+  marginBottom: "20px",
+  lineHeight: 1.3,
+  borderBottom: `.5px solid ${colors.lightGray}`,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: "30px",
+      paddingBottom: space.xs,
+      marginTop: "50px",
+    },
+  },
+});
+
+// ------------------------------
+// h3
+// ------------------------------
+export const h3 = style({
+  fontWeight: fontWeight.bold,
+  fontSize: fontSizes.l,
+  marginTop: "25px",
+  marginBottom: "10px",
+  lineHeight: 1.3,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginTop: "30px",
+    },
+  },
+});
+
+// ------------------------------
+// h4
+// ------------------------------
+export const h4 = style({
+  fontWeight: fontWeight.bold,
+  fontSize: fontSizes.ml,
+  marginTop: "20px",
+  marginBottom: "8px",
+  lineHeight: 1.3,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginTop: "25px",
+    },
+  },
+});
+
+// ------------------------------
+// p
+// ------------------------------
+export const p = style({
+  fontSize: fontSizes.m,
+  lineHeight: 1.8,
+  marginBlock: "14px",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: "18px",
+    },
+  },
+});
+
+// ------------------------------
 // 太字
+// ------------------------------
 export const strong = style({
-  fontWeight: "700", // Tailwindの font-bold 相当
-  color: "#DC2626", // Tailwindの red-600 相当、変更可
+  fontWeight: fontWeight.bold,
 });
 
+// ------------------------------
 // 引用スタイル
+// ------------------------------
 export const blockquote = style({
-  borderLeft: "4px solid #3B82F6",
-  paddingLeft: "1rem",
-  margin: "1rem 0",
+  borderLeft: `4px solid ${colors.lightGray}`,
+  paddingLeft: space.xs,
   fontStyle: "italic",
-  color: "#374151",
-  backgroundColor: "#F9FAFB",
+  color: colors.darkGray,
+  marginBlock: space.ml,
+  paddingBlock: space.xxs,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      paddingLeft: space.s,
+    },
+  },
 });
 
+// blockquote内のpタグ
+globalStyle(`${blockquote} p`, {
+  marginBlock: 0,
+  lineHeight: 1.3,
+  whiteSpace: "pre-line",
+  fontSize: fontSizes.s,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: fontSizes.m,
+    },
+  },
+});
+
+// blockquote内のblockquoteタグ（２重引用）
+globalStyle(`${blockquote} blockquote`, {
+  marginBottom: 0,
+  marginTop: space.xs,
+});
+
+// ------------------------------
+// インラインコード
+// ------------------------------
+export const inlineCode = style({
+  backgroundColor: "#EBEBEB",
+  padding: ".2rem .4rem",
+  marginInline: "2px",
+  color: colors.brack,
+  borderRadius: "4px",
+  fontFamily: "Menlo, monospace",
+  fontSize: fontSizes.s,
+  verticalAlign: ".08em",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: fontSizes.m,
+    },
+  },
+});
+
+// ------------------------------
+// リンク
+// ------------------------------
+export const link = style({
+  color: "#0f83fd",
+  textDecoration: "none",
+  textUnderlineOffset: "3.5px",
+  fontWeight: fontWeight.midium,
+  selectors: {
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
+});
+
+// ------------------------------
 // 箇条書き（ul）
+// ------------------------------
 export const unorderedList = style({
   paddingLeft: "1.5rem",
-  listStyleType: "disc",
-  marginBottom: "1rem",
+  listStyleType: "disc", // ●
+  marginBlock: "14px",
 });
 
+globalStyle(`${unorderedList} ul`, {
+  listStyleType: "circle", // ○
+  marginBlock: "10px",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginBlock: space.s,
+    },
+  },
+});
+
+globalStyle(`${unorderedList} ul ul`, {
+  listStyleType: "square", // ■
+  marginBlock: "10px",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginBlock: space.s,
+    },
+  },
+});
+
+// ------------------------------
 // 番号付きリスト（ol）
+// ------------------------------
 export const orderedList = style({
   paddingLeft: "1.5rem",
   listStyleType: "decimal",
-  marginBottom: "1rem",
+  marginBlock: "14px",
 });
 
+globalStyle(`${orderedList} ol`, {
+  listStyleType: "none",
+  counterReset: "item",
+  marginBlock: "10px",
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      marginBlock: space.s,
+    },
+  },
+});
+
+globalStyle(`${orderedList} li`, {
+  counterIncrement: "item",
+});
+
+globalStyle(`${orderedList} li::marker`, {
+  content: "counters(item, '.') '. '", // 1.1 / 1.1.1 の階層番号
+});
+
+// ------------------------------
 // リスト項目
+// ------------------------------
 export const listItem = style({
-  marginBottom: "0.5rem",
-});
-
-// インラインコード
-export const inlineCode = style({
-  backgroundColor: "#F3F4F6", // 明るめのグレー
-  padding: "0.2em 0.4em",
-  borderRadius: "4px",
-  fontFamily: "Menlo, monospace",
-  fontSize: "0.95em",
-  color: "#EF4444", // 赤系の文字色
-});
-
-// リンク
-export const link = style({
-  color: "#3B82F6", // Tailwindの blue-500
-  textDecoration: "underline",
-  textUnderlineOffset: "2px",
-  transition: "color 0.2s ease",
-  selectors: {
-    "&:hover": {
-      color: "#2563EB", // Tailwindの blue-600
+  marginBlock: "3px",
+  fontSize: fontSizes.m,
+  lineHeight: 1.5,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: "18px",
     },
   },
 });
 
+// ------------------------------
 // テーブル
+// ------------------------------
 export const table = style({
-  width: "100%",
+  marginBlock: "16px",
+  maxWidth: "100%",
   borderCollapse: "collapse",
-  margin: "1rem 0",
-  fontSize: "0.95rem",
-});
-export const tableHeader = style({
-  backgroundColor: "#F3F4F6", // 明るめグレー
-  fontWeight: "bold",
-  textAlign: "left",
-  padding: "0.75rem 1rem",
-  borderBottom: "2px solid #E5E7EB", // グレー
-});
-export const tableCell = style({
-  padding: "0.75rem 1rem",
-  borderBottom: "1px solid #E5E7EB",
-});
-export const tableRow = style({
-  selectors: {
-    "&:hover": {
-      backgroundColor: "#FAFAFA",
+  fontSize: fontSizes.m,
+  lineHeight: 1.3,
+  border: `.5px solid ${colors.lightGray}`,
+  "@media": {
+    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
+      fontSize: "18px",
     },
   },
+});
+
+export const tableHeader = style({
+  fontWeight: "bold",
+  backgroundColor: colors.darkWhite,
+  paddingBlock: space.xs,
+  paddingInline: space.m,
+  border: `.5px solid ${colors.lightGray}`,
+});
+
+export const tableCell = style({
+  paddingBlock: space.xs,
+  paddingInline: space.m,
+  border: `.5px solid ${colors.lightGray}`,
 });
