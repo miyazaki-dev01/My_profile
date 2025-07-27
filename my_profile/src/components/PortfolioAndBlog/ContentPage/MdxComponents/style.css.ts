@@ -158,7 +158,6 @@ export const link = style({
   color: "#0f83fd",
   textDecoration: "none",
   textUnderlineOffset: "3.5px",
-  fontWeight: fontWeight.midium,
   selectors: {
     "&:hover": {
       textDecoration: "underline",

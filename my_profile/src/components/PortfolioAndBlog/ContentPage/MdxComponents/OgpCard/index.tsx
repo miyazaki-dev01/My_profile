@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import * as styles from "./style.css";
 
 type OgpImage = {
   url: string;
@@ -39,37 +40,28 @@ export function OgpCard({ ogp }: Props) {
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          className="block border rounded-xl p-4 shadow-md hover:shadow-lg transition"
+          className={styles.card}
         >
-          <div className="flex gap-4 items-center">
-            {imageUrl ? (
-              <img
-                src={imageUrl}
-                alt={imageAlt}
-                width={imageWidth}
-                height={imageHeight}
-                style={{
-                  width: "96px",
-                  height: "96px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                  flexShrink: 0,
-                }}
-              />
-            ) : (
-              <Image
-                src="/theme/no_image.png"
-                width={800}
-                height={500}
-                alt="no-image"
-              />
-            )}
-            <div className="flex-1">
-              {domain && <p className="text-xs text-gray-500 mb-1">{domain}</p>}
-              <p className="text-lg font-semibold line-clamp-1">{title}</p>
-              <p className="text-sm text-gray-600 line-clamp-2">
+          <div className={styles.content}>
+            <div className={styles.textContainer}>
+              <p className={`${styles.title} line-clamp-1`}>{title}</p>
+              <p className={`${styles.description} line-clamp-1`}>
                 {description}
               </p>
+              {domain && <p className={styles.domain}>{domain}</p>}
+            </div>
+            <div className={styles.imageWrapper}>
+              {imageUrl ? (
+                <img src={imageUrl} alt={imageAlt} className={styles.image} />
+              ) : (
+                <Image
+                  src="/theme/no_image.png"
+                  width={800}
+                  height={500}
+                  alt="no-image"
+                  className={styles.image}
+                />
+              )}
             </div>
           </div>
         </a>

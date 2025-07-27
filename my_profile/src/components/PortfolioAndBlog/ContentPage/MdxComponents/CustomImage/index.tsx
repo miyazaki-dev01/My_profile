@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import * as styles from "./style.css";
 
 type CustomImageProps = {
   idx: number;
@@ -16,12 +17,14 @@ export const CustomImage = ({ idx, images }: CustomImageProps) => {
   if (!image) return null;
 
   return (
-    <Image
-      src={image ? image.url : "/theme/comming_soon.png"}
-      height={image.height}
-      width={image.width}
-      alt={`画像${idx + 1}`}
-      style={{ width: "100%", borderRadius: 8, margin: "1rem 0" }}
-    />
+    <div className={styles.imageWrapper}>
+      <Image
+        src={image.url}
+        height={image.height}
+        width={image.width}
+        alt={`画像${idx + 1}`}
+        className={styles.image}
+      />
+    </div>
   );
 };
