@@ -24,8 +24,6 @@ export function OgpCard({ ogp }: Props) {
 
   // 値を抽出（string で来ることもあるので number に変換）
   const imageUrl = imageData?.url;
-  const imageWidth = imageData?.width ? Number(imageData.width) : 96;
-  const imageHeight = imageData?.height ? Number(imageData.height) : 96;
   const imageAlt = imageData?.alt ?? "OGP Image";
 
   const title = ogp.ogTitle || "No Title";

@@ -1,12 +1,12 @@
-import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrism from "rehype-prism-plus";
 import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
 import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
+import { prettyCodeOptions } from "@/libs/prettyCodeOptions";
 
 export const mdxOptions: MDXRemoteOptions = {
   mdxOptions: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeCodeTitles, [rehypePrism, { showLineNumbers: true }]],
+    rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
     format: "mdx",
   },
   parseFrontmatter: true,

@@ -48,6 +48,9 @@ export const MdxComponents = (
   th: (props) => <th className={styles.tableHeader} {...props} />,
   td: (props) => <td className={styles.tableCell} {...props} />,
 
+  // ---- コードブロック ----
+  pre: (props) => <pre className="rounded-lg p-4" {...props} />,
+
   // ---- カスタム画像 ----
   CustomImage: ({ idx }: { idx: number }) => (
     <CustomImage idx={idx} images={images} />

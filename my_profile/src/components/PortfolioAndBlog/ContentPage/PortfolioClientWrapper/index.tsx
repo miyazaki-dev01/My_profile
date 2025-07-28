@@ -7,7 +7,6 @@ import { PortfolioDetailProps } from "@/types/PortfolioContent";
 import { useScrollRestoration } from "@/hooks/useScrollRestoration";
 import { usePageLoading } from "@/hooks/usePageLoading";
 import Loader from "@/components/PortfolioAndBlog/Loader";
-import "@/styles/prism.css";
 import * as styles from "./style.css";
 import { SnsShareIcons } from "@/components/PortfolioAndBlog/ContentPage/SnsShareIcon";
 import { URL } from "@/constants/url";
