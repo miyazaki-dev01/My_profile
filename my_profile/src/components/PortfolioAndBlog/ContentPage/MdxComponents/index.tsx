@@ -1,11 +1,16 @@
 import React from "react";
+import type { HTMLAttributes } from "react";
 import { CustomImage } from "@/components/PortfolioAndBlog/ContentPage/MdxComponents/CustomImage";
 import { OgpCard } from "@/components/PortfolioAndBlog/ContentPage/MdxComponents/OgpCard";
 import * as styles from "./style.css";
 import type { MDXComponents } from "next-mdx-remote-client/rsc";
+import CodeBlock from "@/components/PortfolioAndBlog/ContentPage/MdxComponents/CodeBlock";
 
 type CustomImageProps = React.ComponentProps<typeof CustomImage>;
 type OgpCardProps = React.ComponentProps<typeof OgpCard>;
+type CodeProps = HTMLAttributes<HTMLElement> & {
+  "data-theme"?: string;
+};
 
 export const MdxComponents = (
   images: CustomImageProps["images"],
@@ -25,7 +30,6 @@ export const MdxComponents = (
   blockquote: (props) => (
     <blockquote className={styles.blockquote} {...props} />
   ),
-  code: (props) => <code className={styles.inlineCode} {...props} />,
   a: (props) => (
     <a
       target="_blank"
@@ -34,6 +38,15 @@ export const MdxComponents = (
       {...props}
     />
   ),
+  code: (props: CodeProps) => {
+    const isCodeBlock = !!props["data-theme"]; // これがあればコードブロックなため、スタイルを適用しない
+    return (
+      <code
+        className={isCodeBlock ? undefined : styles.inlineCode}
+        {...props}
+      />
+    );
+  },
 
   // ---- リスト ----
   ul: (props) => <ul className={styles.unorderedList} {...props} />,
@@ -49,7 +62,7 @@ export const MdxComponents = (
   td: (props) => <td className={styles.tableCell} {...props} />,
 
   // ---- コードブロック ----
-  pre: (props) => <pre className="rounded-lg p-4" {...props} />,
+  figure: (props) => <CodeBlock {...props} />,
 
   // ---- カスタム画像 ----
   CustomImage: ({ idx }: { idx: number }) => (
