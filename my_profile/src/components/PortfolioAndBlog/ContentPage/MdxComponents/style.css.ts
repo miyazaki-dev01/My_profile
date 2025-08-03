@@ -80,7 +80,7 @@ export const h4 = style({
 // ------------------------------
 export const p = style({
   fontSize: fontSizes.m,
-  lineHeight: 1.8,
+  lineHeight: 1.6,
   marginBlock: "14px",
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {

@@ -49,7 +49,7 @@ export default function BlogListWrapper({ blogs }: BlogsProps) {
                 )}
                 <h2 className={blogTitleStyle}>{blog.title}</h2>
                 <p className={blogDateStyel}>
-                  {dayjs(blog.updatedAt).format("YYYY.MM.DD")}
+                  {dayjs(blog.revisedAt).format("YYYY.MM.DD")}
                 </p>
               </div>
               <div className={blogImageDivStyle}>

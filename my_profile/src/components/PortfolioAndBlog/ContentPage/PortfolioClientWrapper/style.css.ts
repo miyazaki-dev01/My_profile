@@ -22,7 +22,6 @@ export const TitleStyle = style({
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       fontSize: fontSizes.xxml,
-      fontWeight: fontWeight.bold,
       paddingInline: "50px",
       marginTop: "30px",
     },

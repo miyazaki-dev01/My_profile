@@ -3,7 +3,7 @@ import { URL } from "@/constants/url";
 import type { MetaContentData } from "@/types/Meta";
 
 type GenerateMetadataArgs = {
-  slug: string ;
+  slug: string;
   getContentBySlug: (slug: string) => Promise<MetaContentData | null>;
   pathPrefix: string;
   siteName: string;
@@ -22,7 +22,7 @@ export async function generateMetadataByContent({
   const pageUrl = `${URL.appRoot}${pathPrefix}/${content.articleSlug}`;
   const imageUrl = content.thumbnail.url;
   const title = content.title;
-  const description = content.description;
+  const description = content.description ?? "";
 
   return {
     title,

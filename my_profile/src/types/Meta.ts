@@ -1,7 +1,7 @@
 export type MetaContentData = {
   articleSlug: string;
   title: string;
-  description: string;
+  description?: string;
   thumbnail: {
     url: string;
     width: number;
