@@ -16,18 +16,18 @@ export const ShareTextStyle = style({
   justifyContent: "center",
   width: "100%",
   gap: space.m,
-  fontSize: fontSizes.ml,
+  fontSize: fontSizes.l,
   selectors: {
     "&::before, &::after": {
       content: '""',
       flexGrow: 1,
       height: ".5px",
-      backgroundColor: colors.darkGray,
+      backgroundColor: colors.brack,
     },
   },
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      fontSize: fontSizes.l,
+      fontSize: fontSizes.xl,
       gap: space.ml,
     },
   },
@@ -35,7 +35,7 @@ export const ShareTextStyle = style({
 
 export const ShareIconsStyle = style({
   display: "flex",
-  marginTop: space.l,
+  marginTop: space.xl,
   gap: space.xml,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {

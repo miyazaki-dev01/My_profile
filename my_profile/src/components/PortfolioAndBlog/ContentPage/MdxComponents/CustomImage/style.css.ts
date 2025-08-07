@@ -1,10 +1,11 @@
 import { style } from "@vanilla-extract/css";
+import space from "@/theme/space";
 
 export const imageWrapper = style({
   overflow: "hidden",
   maxWidth: "100%",
   textAlign: "left",
-  marginBlock: "16px",
+  marginBlock: space.l,
 });
 
 export const image = style({

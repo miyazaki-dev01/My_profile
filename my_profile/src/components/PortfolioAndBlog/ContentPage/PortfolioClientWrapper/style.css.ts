@@ -29,9 +29,9 @@ export const TitleStyle = style({
 });
 
 export const TitleHrStyle = style({
-  borderTop: `1px solid ${colors.lightGray}`,
+  borderTop: `1px solid ${colors.brack}`,
   marginTop: space.s,
-  marginBottom: space.xml,
+  marginBottom: space.l,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       marginBottom: space.xxl,
@@ -55,7 +55,7 @@ export const DiscriptionStyle = style({
   lineHeight: 1.5,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      fontSize: "18px",
+      fontSize: "17px",
     },
   },
 });

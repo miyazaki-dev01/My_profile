@@ -14,7 +14,7 @@ export const card = style({
   textDecoration: "none",
   paddingBlock: "8px",
   paddingInline: "10px",
-  marginBlock: space.ml,
+  marginBlock: space.l,
   selectors: {
     "&:hover": {
       boxShadow: `0 4px 6px ${colors.darkGray}80`,

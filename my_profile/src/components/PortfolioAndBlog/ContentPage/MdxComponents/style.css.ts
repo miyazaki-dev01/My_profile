@@ -9,10 +9,12 @@ import space from "@/theme/space";
 // ラッパー
 // ------------------------------
 export const wrapper = style({
-  marginBlock: "90px",
+  marginTop: "70px",
+  marginBottom: "80px",
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      marginBlock: "80px",
+      marginTop: "80px",
+      marginBottom: "100px",
       marginInline: "5%",
     },
   },
@@ -33,12 +35,12 @@ export const h2 = style({
   marginTop: "40px",
   marginBottom: "20px",
   lineHeight: 1.3,
-  borderBottom: `.5px solid ${colors.lightGray}`,
+  borderBottom: `1px solid ${colors.brack}`,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       fontSize: "30px",
       paddingBottom: space.xs,
-      marginTop: "50px",
+      marginTop: "80px",
     },
   },
 });
@@ -48,13 +50,16 @@ export const h2 = style({
 // ------------------------------
 export const h3 = style({
   fontWeight: fontWeight.bold,
-  fontSize: fontSizes.l,
-  marginTop: "25px",
+  fontSize: fontSizes.ml,
+  marginTop: "40px",
   marginBottom: "10px",
+  paddingBottom: space.xxs,
   lineHeight: 1.3,
+  borderBottom: `1px dashed ${colors.darkGray}`,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      marginTop: "30px",
+      marginTop: "50px",
+      fontSize: "22px",
     },
   },
 });
@@ -64,13 +69,14 @@ export const h3 = style({
 // ------------------------------
 export const h4 = style({
   fontWeight: fontWeight.bold,
-  fontSize: fontSizes.ml,
-  marginTop: "20px",
+  fontSize: fontSizes.m,
+  marginTop: "25px",
   marginBottom: "8px",
   lineHeight: 1.3,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       marginTop: "25px",
+      fontSize: "18px",
     },
   },
 });
@@ -80,11 +86,11 @@ export const h4 = style({
 // ------------------------------
 export const p = style({
   fontSize: fontSizes.m,
-  lineHeight: 1.6,
-  marginBlock: "14px",
+  lineHeight: 1.7,
+  marginBlock: space.l,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      fontSize: "18px",
+      fontSize: "17px",
     },
   },
 });
@@ -104,7 +110,7 @@ export const blockquote = style({
   paddingLeft: space.xs,
   fontStyle: "italic",
   color: colors.darkGray,
-  marginBlock: space.ml,
+  marginBlock: space.l,
   paddingBlock: space.xxs,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
@@ -144,11 +150,6 @@ export const inlineCode = style({
   fontFamily: "Menlo, monospace",
   fontSize: fontSizes.s,
   verticalAlign: ".08em",
-  "@media": {
-    [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      fontSize: fontSizes.m,
-    },
-  },
 });
 
 // ------------------------------
@@ -231,7 +232,7 @@ export const listItem = style({
   lineHeight: 1.5,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      fontSize: "18px",
+      fontSize: "17px",
     },
   },
 });
@@ -240,7 +241,7 @@ export const listItem = style({
 // テーブル
 // ------------------------------
 export const table = style({
-  marginBlock: "16px",
+  marginBlock: space.l,
   maxWidth: "100%",
   borderCollapse: "collapse",
   fontSize: fontSizes.m,
@@ -248,7 +249,7 @@ export const table = style({
   border: `.5px solid ${colors.lightGray}`,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
-      fontSize: "18px",
+      fontSize: "17px",
     },
   },
 });
@@ -256,13 +257,13 @@ export const table = style({
 export const tableHeader = style({
   fontWeight: "bold",
   backgroundColor: colors.darkWhite,
-  paddingBlock: space.xs,
-  paddingInline: space.m,
+  paddingBlock: "7px",
+  paddingInline: space.s,
   border: `.5px solid ${colors.lightGray}`,
 });
 
 export const tableCell = style({
-  paddingBlock: space.xs,
-  paddingInline: space.m,
+  paddingBlock: "7px",
+  paddingInline: space.s,
   border: `.5px solid ${colors.lightGray}`,
 });
