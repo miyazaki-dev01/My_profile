@@ -9,15 +9,16 @@ export const card = style({
   display: "block",
   border: `1px solid ${colors.darkWhite}`,
   borderRadius: "10px",
-  boxShadow: `0 1px 3px ${colors.darkGray}40`,
+  boxShadow: `1px 1px 2px ${colors.darkGray}80`,
   transition: "box-shadow 0.2s ease",
   textDecoration: "none",
   paddingBlock: "8px",
   paddingInline: "10px",
   marginBlock: space.l,
+  backgroundColor: colors.darkWhite,
   selectors: {
     "&:hover": {
-      boxShadow: `0 4px 6px ${colors.darkGray}80`,
+      boxShadow: `3px 3px 3px ${colors.darkGray}80`,
     },
   },
   "@media": {
