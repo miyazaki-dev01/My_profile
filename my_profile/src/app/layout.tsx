@@ -21,9 +21,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: META.siteTitle,
     description: META.siteDescription,
-    url: "https://my-profile-mu-gold.vercel.app",
+    url: META.siteUrl,
     siteName: META.siteTitle,
-    images: [{ url: "/metadata/Miyazaki's_profile.png", alt: "OGP Image" }],
+    images: [{ url: META.siteUrl, alt: "OGP Image" }],
     locale: "ja_JP",
     type: "website",
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: META.siteTitle,
     description: META.siteDescription,
-    images: [{ url: "/metadata/Miyazaki's_profile.png", alt: "OGP Image" }],
+    images: [{ url: META.siteUrl, alt: "OGP Image" }],
   },
 };
 
