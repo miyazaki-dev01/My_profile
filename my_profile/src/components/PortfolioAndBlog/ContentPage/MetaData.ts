@@ -40,6 +40,7 @@ export async function generateMetadataByContent({
           alt: "OGP Image",
         },
       ],
+      locale: "ja_JP",
       type: "article",
     },
     twitter: {
