@@ -41,7 +41,7 @@ export const BlogCard = ({
           )}
           <p className={dateStyle}>{formattedDate}</p>
         </div>
-        <p className={titleStyle}>{title}</p>
+        <p className={`${titleStyle} line-clamp-2`}>{title}</p>
       </a>
     </div>
   );
