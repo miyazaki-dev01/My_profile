@@ -9,7 +9,7 @@ export const fetchOgpDataFromMdx = async (
   const ogpDataList: OgpCache = {};
 
   // 正規表現で <OgpCard url="..." /> を抽出
-  const regex = /<OgpCard\s+url="([^"]+)"\s*\/?>/g;
+  const regex = /(?<!\\)<OgpCard\s+url="([^"]+)"\s*\/?>/g;
   const matches = mdxText.matchAll(regex);
 
   const uniqueUrls = new Set<string>();

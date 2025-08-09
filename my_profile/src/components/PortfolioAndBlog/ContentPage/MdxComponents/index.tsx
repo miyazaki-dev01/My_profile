@@ -22,7 +22,7 @@ export const MdxComponents = (
   // ---- 見出し ----
   h2: (props) => <h2 className={styles.h2} {...props} />,
   h3: (props) => <h3 className={styles.h3} {...props} />,
-  h4: (props) => <h3 className={styles.h4} {...props} />,
+  h4: (props) => <h4 className={styles.h4} {...props} />,
 
   // ---- テキスト要素 ----
   p: (props) => <p className={styles.p} {...props} />,
