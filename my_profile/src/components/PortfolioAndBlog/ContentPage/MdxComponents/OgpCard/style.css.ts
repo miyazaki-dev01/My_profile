@@ -40,6 +40,7 @@ export const textContainer = style({
 });
 
 export const title = style({
+  lineBreak: "anywhere",
   fontSize: fontSizes.m,
   fontWeight: fontWeight.bold,
   "@media": {
@@ -50,6 +51,7 @@ export const title = style({
 });
 
 export const description = style({
+  lineBreak: "anywhere",
   fontSize: fontSizes.xs,
   color: colors.darkGray,
   marginTop: space.xxs,
