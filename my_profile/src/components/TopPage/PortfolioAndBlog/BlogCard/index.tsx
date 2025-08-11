@@ -24,7 +24,7 @@ export const BlogCard = ({
 
   return (
     <div className={cardStyle}>
-      <a href={`blog/${articleSlug}`} className={imageAStyle}>
+      <a href={`blog/${articleSlug}`} target="_blank" className={imageAStyle}>
         <Image
           className={imageStyle}
           src={thumbnail.url}
@@ -34,7 +34,11 @@ export const BlogCard = ({
           unoptimized
         />
       </a>
-      <a href={`blog/${articleSlug}`} className={descriptionStyle}>
+      <a
+        href={`blog/${articleSlug}`}
+        target="_blank"
+        className={descriptionStyle}
+      >
         <div className={categoryAndDateStyle}>
           {category && (!Array.isArray(category) || category.length > 0) && (
             <p className={categoryStyle}>{category}</p>
