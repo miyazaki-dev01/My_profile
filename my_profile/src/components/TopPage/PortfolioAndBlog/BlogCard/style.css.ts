@@ -91,11 +91,11 @@ export const dateStyle = style({
 });
 
 export const titleStyle = style({
+  lineBreak: "anywhere",
   fontSize: fontSizes.m,
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
   fontWeight: fontWeight.bold,
+  lineHeight: 1.3,
+  marginTop: space.xs,
   "@media": {
     [`screen and (max-width: ${breakpoints.mobile}px)`]: {
       fontSize: fontSizes.m,
