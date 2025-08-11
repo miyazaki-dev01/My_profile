@@ -171,7 +171,10 @@ const QUALIFICATION_CONTENT_TEXT: React.ComponentProps<
     text: "G検定",
   },
   {
-    text: "AWS認定 Certified Cloud Practitioner (2023.3.31取得)",
+    text: "AWS Certified Cloud Practitioner (2023.3.31取得)",
+  },
+  {
+    text: "AWS Certified Solutions Architect - Associate (2025.6.22取得)",
   },
 ];
 
