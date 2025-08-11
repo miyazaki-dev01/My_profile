@@ -156,6 +156,9 @@ export const inlineCode = style({
 // リンク
 // ------------------------------
 export const link = style({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: space.xxs,
   color: "#0f83fd",
   textDecoration: "none",
   textUnderlineOffset: "3.5px",
@@ -164,6 +167,11 @@ export const link = style({
       textDecoration: "underline",
     },
   },
+});
+export const aIcon = style({
+  color: "#0f83fd80",
+  width: "14px",
+  height: "14px",
 });
 
 // ------------------------------

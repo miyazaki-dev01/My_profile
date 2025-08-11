@@ -5,6 +5,7 @@ import { OgpCard } from "@/components/PortfolioAndBlog/ContentPage/MdxComponents
 import * as styles from "./style.css";
 import type { MDXComponents } from "next-mdx-remote-client/rsc";
 import CodeBlock from "@/components/PortfolioAndBlog/ContentPage/MdxComponents/CodeBlock";
+import { FiExternalLink } from "react-icons/fi";
 
 type CustomImageProps = React.ComponentProps<typeof CustomImage>;
 type OgpCardProps = React.ComponentProps<typeof OgpCard>;
@@ -36,7 +37,10 @@ export const MdxComponents = (
       rel="noopener noreferrer"
       className={styles.link}
       {...props}
-    />
+    >
+      {props.children}
+      <FiExternalLink className={styles.aIcon} />
+    </a>
   ),
   code: (props: CodeProps) => {
     const isCodeBlock = !!props["data-theme"]; // これがあればコードブロックなため、スタイルを適用しない
