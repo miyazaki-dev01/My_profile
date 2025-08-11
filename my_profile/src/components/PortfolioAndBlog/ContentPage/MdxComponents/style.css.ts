@@ -162,10 +162,9 @@ export const link = style({
   color: "#0f83fd",
   textDecoration: "none",
   textUnderlineOffset: "3.5px",
-  selectors: {
-    "&:hover": {
-      textDecoration: "underline",
-    },
+  transition: "color 0.2s ease",
+  ":hover": {
+    color: "#0f83fd80",
   },
 });
 export const aIcon = style({
