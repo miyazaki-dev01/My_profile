@@ -29,7 +29,7 @@ export const PortfolioCard = ({
       </a>
       <a href={`/portfolio/${articleSlug}`}>
         <p className={titleStyle}>{title}</p>
-        <p className={descriptionStyle}>{description}</p>
+        <p className={`${descriptionStyle} line-clamp-2`}>{description}</p>
       </a>
     </div>
   );

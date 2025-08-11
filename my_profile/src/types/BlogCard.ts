@@ -8,7 +8,7 @@ export type BlogCardProps = {
     width: number;
   };
   articleSlug: string;
-  updatedAt: string;
+  revisedAt: string;
 };
 
 export type BlogsProps = {

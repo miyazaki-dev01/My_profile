@@ -10,6 +10,6 @@ export type PortfolioCardProps = {
   articleSlug: string;
 };
 
-export type PortfoliosProps = {
+export type PortfolioListProps = {
   portfolios: PortfolioCardProps[];
 };
