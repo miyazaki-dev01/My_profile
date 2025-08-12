@@ -156,21 +156,25 @@ export const inlineCode = style({
 // リンク
 // ------------------------------
 export const link = style({
-  display: "inline-flex",
-  alignItems: "center",
   gap: space.xxs,
   color: "#0f83fd",
-  textDecoration: "none",
-  textUnderlineOffset: "3.5px",
+  textDecoration: "underline",
+  textUnderlineOffset: "2px",
+  textDecorationThickness: "1px",
+  textDecorationColor: "#0f83fd80",
   transition: "color 0.2s ease",
   ":hover": {
     color: "#0f83fd80",
   },
 });
 export const aIcon = style({
+  display: "inline-flex",
   color: "#0f83fd80",
   width: "14px",
   height: "14px",
+  marginLeft: "2px",
+  marginRight: "5px",
+  marginBottom: "2px",
 });
 
 // ------------------------------
