@@ -20,6 +20,7 @@ export const captionContent = style({
   position: "absolute",
   top: "0",
   left: "0",
+  zIndex: 20,
   paddingBlock: "3px",
   paddingInline: space.s,
   background: `color-mix(in srgb, ${colors.darkWhite} 80%, transparent)`,
@@ -53,6 +54,8 @@ export const preWrapper = style({
   scrollbarWidth: "thin",
   scrollbarColor: `${colors.darkWhite} ${colors.brack}`,
   fontSize: fontSizes.s,
+  backgroundColor: "var(--shiki-color-background, #21252B)",
+  zIndex: 10,
   selectors: {
     "&::-webkit-scrollbar": {
       height: "6px",
@@ -151,6 +154,7 @@ export const copyWrapper = style({
   right: "10px",
   padding: space.xxs,
   marginRight: space.xs,
+  zIndex: 30,
   "@media": {
     [`screen and (min-width: ${breakpoints.desktop}px)`]: {
       top: "12px",
