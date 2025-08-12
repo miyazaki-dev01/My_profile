@@ -77,6 +77,6 @@ export const MdxComponents = (
   OgpCard: ({ url }: { url: string }) => {
     const ogp = ogpMap[url];
     if (!ogp) return null;
-    return <OgpCard ogp={ogp} />;
+    return <OgpCard siteUrl={url} ogp={ogp} />;
   },
 });
