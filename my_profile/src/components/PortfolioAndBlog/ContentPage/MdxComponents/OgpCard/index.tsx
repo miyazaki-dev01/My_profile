@@ -10,6 +10,7 @@ type OgpImage = {
 };
 
 type Props = {
+  siteUrl: string;
   ogp: {
     ogTitle?: string;
     ogDescription?: string;
@@ -18,7 +19,7 @@ type Props = {
   };
 };
 
-export function OgpCard({ ogp }: Props) {
+export function OgpCard({ siteUrl, ogp }: Props) {
   // ogImage を単一に正規化（最初の画像）
   const imageData = Array.isArray(ogp.ogImage) ? ogp.ogImage[0] : ogp.ogImage;
 
@@ -28,7 +29,7 @@ export function OgpCard({ ogp }: Props) {
 
   const title = ogp.ogTitle || "No Title";
   const description = ogp.ogDescription || "No description available.";
-  const link = ogp.ogUrl || "#";
+  const link = ogp.ogUrl || siteUrl;
   const domain = ogp.ogUrl ? new URL(ogp.ogUrl).hostname : "";
 
   return (
