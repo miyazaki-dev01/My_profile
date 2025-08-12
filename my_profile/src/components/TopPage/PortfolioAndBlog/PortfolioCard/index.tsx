@@ -17,7 +17,11 @@ export const PortfolioCard = ({
 }: PortfolioCardProps) => {
   return (
     <div className={PortfolioCardStyle}>
-      <a href={`/portfolio/${articleSlug}`} className={imageAStyle}>
+      <a
+        href={`/portfolio/${articleSlug}`}
+        target="_blank"
+        className={imageAStyle}
+      >
         <Image
           src={url}
           alt="Portfolio Image"
@@ -27,7 +31,7 @@ export const PortfolioCard = ({
           className={imageStyle}
         />
       </a>
-      <a href={`/portfolio/${articleSlug}`}>
+      <a href={`/portfolio/${articleSlug}`} target="_blank">
         <p className={titleStyle}>{title}</p>
         <p className={`${descriptionStyle} line-clamp-2`}>{description}</p>
       </a>
