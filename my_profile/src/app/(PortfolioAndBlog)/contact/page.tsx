@@ -113,6 +113,18 @@ export default function Contact() {
                   />
                 </div>
                 <div className={formContentStyle}>
+                  <label className={fromLavelStyle}>title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    disabled={isSubmitting}
+                    required
+                    className={formInputStyle}
+                  />
+                </div>
+                <div className={formContentStyle}>
                   <label className={fromLavelStyle}>message</label>
                   <textarea
                     name="message"
