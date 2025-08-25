@@ -42,3 +42,6 @@ next-env.d.ts
 
 # OGP cache
 ogp-cache.json
+
+# AWS CLI
+/aws/
