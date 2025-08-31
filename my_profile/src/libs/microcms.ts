@@ -135,16 +135,14 @@ export async function getPortfolioById(
 // --------------------------------------------------
 
 // カスタムURLを全件取得
-export const getAllBlogSlugs = async (): Promise<
-  { articleSlug: string }[] | null
-> => {
+export const getAllBlogSlugs = async (): Promise<{ articleSlug: string }[]> => {
   const data = await client.get({
     endpoint: "blog",
     queries: {
       fields: "articleSlug",
     },
   });
-  return data.contents;
+  return data.contents ?? [];
 };
 
 // slugに対応する詳細を取得
@@ -153,7 +151,29 @@ export const getBlogBySlug = async (
 ): Promise<BlogDetailProps | null> => {
   const data = await client.get({
     endpoint: "blog",
-    queries: { filters: `articleSlug[equals]${slug}` },
+    queries: {
+      filters: `articleSlug[equals]${slug}`,
+      limit: 1,
+    },
   });
-  return data.contents[0];
+  return data.contents[0] ?? null;
 };
+
+// contentId, draftKey を使用し、下書き記事を取得（プレビュー用）
+export async function getBlogById(
+  contentId: string,
+  draftKey: string
+): Promise<BlogDetailProps | null> {
+  const data = await client.get({
+    endpoint: "blog",
+    contentId,
+    queries: {
+      draftKey: draftKey || undefined,
+    },
+    customRequestInit: {
+      cache: "no-store" as const,
+    },
+  });
+
+  return data;
+}

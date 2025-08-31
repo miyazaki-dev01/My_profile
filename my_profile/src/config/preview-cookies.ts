@@ -8,7 +8,7 @@ export function isContentType(x: string): x is ContentType {
 // Cookie 名の生成関数
 export function cookieNames(type: ContentType) {
   return {
-    draftKey: `mcms_draftKey_${type}` as const, // 例: mcms_draftKey_blog
-    contentId: `mcms_contentId_${type}` as const, // 例: mcms_contentId_blog
+    draftKey: `mcms_draftKey_${type}` as const,
+    contentId: `mcms_contentId_${type}` as const,
   };
 }
