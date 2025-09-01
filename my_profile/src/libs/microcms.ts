@@ -6,19 +6,19 @@ import { BlogCardProps } from "@/types/BlogCard";
 import { BlogDetailProps } from "@/types/BlogContent";
 
 // 環境変数にMICROCMS_SERVICE_DOMAINが設定されていない場合はエラーを投げる
-if (!process.env.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN) {
+if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required");
 }
 
 // 環境変数にMICROCMS_API_KEYが設定されていない場合はエラーを投げる
-if (!process.env.NEXT_PUBLIC_MICROCMS_API_KEY) {
+if (!process.env.MICROCMS_API_KEY) {
   throw new Error("MICROCMS_API_KEY is required");
 }
 
 // Client SDKの初期化を行う
 export const client = createClient({
-  apiKey: process.env.NEXT_PUBLIC_MICROCMS_API_KEY,
-  serviceDomain: process.env.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN,
+  apiKey: process.env.MICROCMS_API_KEY!,
+  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
 });
 
 // --------------------------------------------------
@@ -84,7 +84,7 @@ export const getBlogListData = async (): Promise<BlogCardProps[]> => {
 
 // カスタムURLを全件取得
 export const getAllPortfolioSlugs = async (): Promise<
-  { articleSlug: string }[] | null
+  { articleSlug: string }[] | []
 > => {
   const data = await client.get({
     endpoint: "portfolio",
@@ -92,7 +92,8 @@ export const getAllPortfolioSlugs = async (): Promise<
       fields: "articleSlug",
     },
   });
-  return data.contents;
+
+  return data.contents ?? [];
 };
 
 // slugに対応する詳細を取得
@@ -101,26 +102,47 @@ export const getPortfolioBySlug = async (
 ): Promise<PortfolioDetailProps | null> => {
   const data = await client.get({
     endpoint: "portfolio",
-    queries: { filters: `articleSlug[equals]${slug}` },
+    queries: {
+      filters: `articleSlug[equals]${slug}`,
+      limit: 1,
+    },
   });
-  return data.contents[0];
+
+  return data.contents[0] ?? null;
 };
+
+// contentId, draftKey を使用し、下書き記事を取得（プレビュー用）
+export async function getPortfolioById(
+  contentId: string,
+  draftKey: string
+): Promise<PortfolioDetailProps | null> {
+  const data = await client.getListDetail<PortfolioDetailProps>({
+    endpoint: "portfolio",
+    contentId,
+    queries: {
+      draftKey: draftKey || undefined,
+    },
+    customRequestInit: {
+      cache: "no-store" as const,
+    },
+  });
+
+  return data ?? null;
+}
 
 // --------------------------------------------------
 // ブログ詳細
 // --------------------------------------------------
 
 // カスタムURLを全件取得
-export const getAllBlogSlugs = async (): Promise<
-  { articleSlug: string }[] | null
-> => {
+export const getAllBlogSlugs = async (): Promise<{ articleSlug: string }[]> => {
   const data = await client.get({
     endpoint: "blog",
     queries: {
       fields: "articleSlug",
     },
   });
-  return data.contents;
+  return data.contents ?? [];
 };
 
 // slugに対応する詳細を取得
@@ -129,7 +151,29 @@ export const getBlogBySlug = async (
 ): Promise<BlogDetailProps | null> => {
   const data = await client.get({
     endpoint: "blog",
-    queries: { filters: `articleSlug[equals]${slug}` },
+    queries: {
+      filters: `articleSlug[equals]${slug}`,
+      limit: 1,
+    },
   });
-  return data.contents[0];
+  return data.contents[0] ?? null;
 };
+
+// contentId, draftKey を使用し、下書き記事を取得（プレビュー用）
+export async function getBlogById(
+  contentId: string,
+  draftKey: string
+): Promise<BlogDetailProps | null> {
+  const data = await client.get({
+    endpoint: "blog",
+    contentId,
+    queries: {
+      draftKey: draftKey || undefined,
+    },
+    customRequestInit: {
+      cache: "no-store" as const,
+    },
+  });
+
+  return data;
+}
