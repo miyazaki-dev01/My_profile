@@ -1,0 +1,78 @@
+name: Deploy static site to S3
+
+on:
+  push:
+    branches: [main]
+
+  repository_dispatch:
+    types: [microcms_build]
+
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+defaults:
+  run:
+    working-directory: my_profile
+
+concurrency:
+  group: deploy-static
+  cancel-in-progress: true
+
+env:
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  S3_BUCKET: ${{ secrets.S3_BUCKET }}
+  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+  MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
+  MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
+  MICROCMS_PREVIEW_SECRET: ${{ secrets.MICROCMS_PREVIEW_SECRET }}
+  NEXT_PUBLIC_CONTACT_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_API_ENDPOINT }}
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+          cache-dependency-path: "my_profile/package-lock.json"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build (static export via script)
+        run: npm run build:static
+
+      - name: Remove API directory from export
+        run: |
+          if [ -d "./out/api" ]; then
+            echo "Removing ./out/api from export output"
+            rm -rf ./out/api
+          else
+            echo "./out/api does not exist. Skipping."
+          fi
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync to S3
+        run: |
+          aws s3 sync ./out s3://$S3_BUCKET --delete --exact-timestamps
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" \
+            --paths "/*"
