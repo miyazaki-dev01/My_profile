@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
   const draftKey = (searchParams.get("draftKey") ?? "").trim();
 
   // バリデーション
-  if (secret !== process.env.PREVIEW_SECRET)
+  if (secret !== process.env.MICROCMS_PREVIEW_SECRET)
     return new Response("Invalid token", { status: 401 });
   if (!contentId || !isContentType(rawType))
     return new Response("Invalid params", { status: 400 });
