@@ -1,33 +1,39 @@
 import { fetchOgpData } from "@/libs/fetchOgpData";
-import type { OgpCache } from "@/types/ogp";
+import type { OgpDataList } from "@/types/ogp";
+
+// フォールバック生成
+const fallback = (url: string) => ({
+  ogUrl: url,
+  ogTitle: (() => {
+    try {
+      return new URL(url).hostname;
+    } catch {
+      return url;
+    }
+  })(),
+  ogDescription: "",
+});
 
 export const fetchOgpDataFromMdx = async (
   mdxText: string
 ): Promise<{
-  ogpDataList: OgpCache;
+  ogpDataList: OgpDataList;
 }> => {
-  const ogpDataList: OgpCache = {};
+  const ogpDataList: OgpDataList = {};
 
   // 正規表現で <OgpCard url="..." /> を抽出
   const regex = /(?<!\\)<OgpCard\s+url="([^"]+)"\s*\/?>/g;
-  const matches = mdxText.matchAll(regex);
-
   const uniqueUrls = new Set<string>();
-  for (const match of matches) {
-    uniqueUrls.add(match[1]);
-  }
+  for (const m of mdxText.matchAll(regex)) uniqueUrls.add(m[1]);
 
-  // すべてのURLに対してOGPデータを取得
-  const resolved = await Promise.all(
-    Array.from(uniqueUrls).map(async (url) => {
-      const data = await fetchOgpData(url);
-      return [url, data] as const;
-    })
-  );
+  // すべてのURLを並列取得（失敗しても続行）
+  const urls = Array.from(uniqueUrls);
+  const settled = await Promise.allSettled(urls.map((u) => fetchOgpData(u)));
 
-  for (const [url, data] of resolved) {
-    ogpDataList[url] = data;
-  }
+  settled.forEach((res, i) => {
+    const url = urls[i];
+    ogpDataList[url] = res.status === "fulfilled" ? res.value : fallback(url);
+  });
 
   return { ogpDataList };
 };
