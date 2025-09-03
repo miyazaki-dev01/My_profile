@@ -1,21 +1,41 @@
 import ogs from "open-graph-scraper";
-import fs from "fs/promises";
-import type { OgpCache, OgpData } from "@/types/ogp";
+import type { OgpData } from "@/types/ogp";
 
-const CACHE_FILE = "ogp-cache.json";
+// フォールバック用に URL からホスト名だけ抜き出す小関数
+const host = (u: string) => {
+  try {
+    return new URL(u).hostname;
+  } catch {
+    return u;
+  }
+};
 
 export async function fetchOgpData(url: string): Promise<OgpData> {
-  const cache: OgpCache = JSON.parse(
-    await fs.readFile(CACHE_FILE, "utf-8").catch(() => "{}")
-  );
+  try {
+    const { error, result } = await ogs({
+      url,
+      timeout: 10_000,
+    });
 
-  // キャッシュにurlが存在するか確認し、あればデータ取得は行わない
-  if (cache[url]) return cache[url];
+    // 取得成功時
+    if (!error && result) {
+      const r = result as Record<string, unknown>;
+      return {
+        ogTitle: r.ogTitle as string | undefined,
+        ogDescription: r.ogDescription as string | undefined,
+        ogImage: r.ogImage as OgpData["ogImage"],
+        ogUrl: (r.ogUrl as string | undefined) ?? url,
+      };
+    }
+  } catch {
+    // 例外はフォールバックへ
+  }
 
-  const { result } = await ogs({ url });
-  const typedResult = result as OgpData;
-
-  cache[url] = typedResult;
-  await fs.writeFile(CACHE_FILE, JSON.stringify(cache, null, 2));
-  return typedResult;
+  // フォールバック
+  return {
+    ogTitle: host(url),
+    ogDescription: "",
+    ogImage: undefined,
+    ogUrl: url,
+  };
 }
