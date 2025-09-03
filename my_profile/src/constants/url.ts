@@ -3,7 +3,7 @@ type Protcol = "http" | "https";
 type Url = `${Protcol}://${string}`;
 
 export const URL = {
-  appRoot: "https://my-profile-mu-gold.vercel.app",
+  appRoot: "https://miyazaki-profile.com",
 } as const satisfies {
   [key: string]: Url;
 };
